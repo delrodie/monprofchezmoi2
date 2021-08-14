@@ -1,10 +1,20 @@
-{% extends 'base.html.twig' %}
+{% extends 'security_layout.html.twig' %}
 
-{% block title %}Hello ChangePasswordController!{% endblock %}
+{% block title %}{{ parent() }} Mot de passe{% endblock %}
 
 {% block body %}
-    {{ form_start(resetForm) }}
-    {{ form_rest(resetForm) }}
-    <button class="btn btn-primary">Modifier</button>
-    {{ form_end(resetForm) }}
+<div class="signin-sidebar">
+    <div class="signin-sidebar-body">
+        <a href="{{ path('app_home') }}" class="sidebar-logo mg-b-40"><span>MON PROF CHEZ MOI</span></a>
+
+        {{ form_start(resetForm) }}
+        <h5 class="signin-subtitle mb-3">Modifier votre mot de passe</h5>
+        {{ form_rest(resetForm) }}
+        <div class="form-group d-flex mg-b-5 mt-3">
+            <button type="submit" class="btn btn-brand-01 btn-uppercase flex-fill">{% trans %}Modifier{% endtrans %}</button>
+        </div>
+        {{ form_end(resetForm) }}
+
+    </div>
+</div>
 {% endblock %}
