@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ChangePasswordController!{% endblock %}
+
+{% block body %}
+    {{ form_start(resetForm) }}
+    {{ form_rest(resetForm) }}
+    <button class="btn btn-primary">Modifier</button>
+    {{ form_end(resetForm) }}
+{% endblock %}
