@@ -1,0 +1,62 @@
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}{{ parent() }} Gestion des presentations{% endblock %}
+
+
+{% block body %}
+    {{ include('backend/entete.html.twig',{'rubrique': 'presentation'}) }}
+    <div class="row">
+        <div class="col text-right">
+            <a href="{{ path('backend_presentation_index') }}" class="btn btn-outline-primary">
+                <i class="fa fa-list"></i> Liste
+            </a>
+        </div>
+    </div>
+    <div class="component-section no-code">
+        <h5 id="section1" class="tx-semibold">Formulaire d'enregistrement</h5>
+        <p class="mg-b-25"></p>
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} alert-dismissible mg-b-25 fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {{ include('backend_presentation/_form.html.twig') }}
+    </div>
+
+{% endblock %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/bootstrap-tagsinput/bootstrap-tagsinput.css')) }}">
+        <link rel="stylesheet" href="{{ absolute_url(asset('/backoffice/plugins/dropify/css/dropify.min.css')) }}">
+    {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdn.ckeditor.com/4.15.1/standard-all/ckeditor.js"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/bootstrap-tagsinput/bootstrap-tagsinput.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('/backoffice/plugins/dropify/js/dropify.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('/backoffice/plugins/dropify/js/upload-init.js')) }}"></script>
+    <script type='text/javascript'>
+
+        $("input[data-preview]").change(function() {
+            var $input = $(this);
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(this.files[0]);
+            fileReader.onload = function(fileEvent) {
+                $($input.data('preview')).attr('src', fileEvent.target.result);
+            };
+        });
+    </script>
+    <script>
+        CKEDITOR.replace( 'presentation[contenu]');
+    </script>
+    <script>
+        $("#presentation_tags").val()
+    </script>
+{% endblock %}

@@ -1,20 +1,41 @@
-{% extends 'base.html.twig' %}
+{% extends 'backend_layout.html.twig' %}
 
-{% block title %}Hello BackendDashboardController!{% endblock %}
+{% block title %}{{parent()}} Tableau de bord{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="row row-sm mg-t-15 mg-sm-t-20">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} alert-dismissible mg-b-25 fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <div class="col-xl-3 offset-xl-9 mg-t-15 mg-sm-t-20">
+            <div class="card card-hover card-calendar-one">
+                <div id="datepicker1"></div>
+            </div><!-- card -->
+        </div><!-- col -->
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ absolute_url(asset('backoffice/lib/jquery.flot/jquery.flot.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/jquery.flot/jquery.flot.stack.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/jquery.flot/jquery.flot.resize.js')) }}"></script>
+    <script>
+        $(function(){
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            'use strict'
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ path('app_home') }}">Accueil</a></code></li>
-        <li>Your controller at <code><a href="{{ path('app_change_password') }}">Modifier password</a></code></li>
-    </ul>
-</div>
+            // card-calendar-one widget
+            $('#datepicker1').datepicker({
+                showOtherMonths: true
+            });
+
+        })
+    </script>
 {% endblock %}

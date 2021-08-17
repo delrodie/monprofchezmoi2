@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
+    <title>{% block title %}MONPROFCHEZMOI ::{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/@fortawesome/fontawesome-free/css/all.min.css')) }}">
+        <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/ionicons/css/ionicons.min.css')) }}">
+    {% endblock %}
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/assets/css/cassie.css')) }}">
+    <link rel="icon" href="{{ absolute_url(asset('assets/images/favico.ico')) }}">
+
+
+</head>
+<body data-spy="scroll" >
+<div class="sidebar">
+    <div class="sidebar-header">
+        <div>
+            <a href="{{ path('app_home') }}" class="sidebar-logo"><span>BACKOFFICE</span></a>
+            <small class="sidebar-logo-headline">MONPROFCHEZMOI</small>
+        </div>
+    </div>
+    <div id="dpSidebarBody" class="sidebar-body">
+        <ul class="nav nav-sidebar">
+            <li class="nav-label"><label class="content-label">Rubriques</label></li>
+            <li class="nav-item {% if menu == 'dashboard' %}show{% endif %}">
+                <a href="#" class="nav-link with-sub"><i data-feather="box"></i> Tableau de bord</a>
+                <nav class="nav nav-sub">
+
+                    <a href="{{ path('app_home') }}" class="nav-sub-link {% if sub_menu == 'backend' %}active{% endif %}">Statistiques</a>
+                </nav>
+            </li>
+            <li class="nav-item {% if menu == 'gestion' %}show{% endif %}">
+                <a href="#" class="nav-link with-sub"><i data-feather="box"></i> Gestion</a>
+                <nav class="nav nav-sub">
+                    <a href="#" class="nav-sub-link {% if sub_menu == 'cover' %}active{% endif %}">Cover</a>
+                    <a href="{{ path('backend_presentation_index') }}" class="nav-sub-link {% if sub_menu == 'presentation' %}active{% endif %}">Presentation</a>
+                    <a href="#" class="nav-sub-link {% if sub_menu == 'contact' %}active{% endif %}">Contact</a>
+                </nav>
+            </li>
+            <li class="nav-item {% if menu == 'soutien' %}show{% endif %}">
+                <a href="#" class="nav-link with-sub"><i data-feather="box"></i> Soutien</a>
+                <nav class="nav nav-sub">
+                    <a href="#" class="nav-sub-link {% if sub_menu == 'primaire' %} active{% endif %}">Contenu</a>
+                    <a href="#" class="nav-sub-link {% if sub_menu == 'college' %} active{% endif %}">Niveau</a>
+                </nav>
+            </li>
+            <li class="nav-item {% if menu == 'soutien' %}show{% endif %}">
+                <a href="#" class="nav-link with-sub"><i data-feather="box"></i> Cours adultes</a>
+                <nav class="nav nav-sub">
+                    <a href="#" class="nav-sub-link {% if sub_menu == 'primaire' %} active{% endif %}">Contenu</a>
+                    <a href="#" class="nav-sub-link {% if sub_menu == 'college' %} active{% endif %}">Type</a>
+                </nav>
+            </li>
+            <li class="nav-item"><a href="#" class="nav-link"><i data-feather="shopping-bag"></i> Newsletter</a></li>
+
+        </ul>
+
+        <hr class="mg-t-30 mg-b-25">
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <ul class="nav nav-sidebar">
+                <li class="nav-item {% if menu == 'admin' %}show{% endif %}">
+                    <a href="#" class="nav-link with-sub {% if menu == 'admin' %}active{% endif %}"><i data-feather="layers"></i> Administration</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link {% if sub_menu == 'usermenu' %} active{% endif %}">Utilisateur</a>
+                    </nav>
+                </li>
+            </ul>
+        {% endif %}
+
+
+
+
+    </div>
+</div>
+<div class="content content-page">
+    <div class="header">
+        <div class="header-left">
+            <a href="#" class="burger-menu"><i data-feather="menu"></i></a>
+
+            <div class="header-search">
+                <i data-feather="search"></i>
+                <input type="search" class="form-control" placeholder="Recherche">
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="dropdown dropdown-loggeduser">
+                <a href="#" class="dropdown-link" data-toggle="dropdown">
+                    <div class="avatar avatar-sm">
+                        <img src="{{ absolute_url(asset('backoffice/assets/img/avatar.png')) }}" class="rounded-circle" alt="">
+                    </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <div class="dropdown-menu-header">
+                        <div class="media align-items-center">
+                            <div class="avatar">
+                                <img src="{{ absolute_url(asset('backoffice/assets/img/avatar.png')) }}" class="rounded-circle" alt="">
+                            </div><!-- avatar -->
+                            <div class="media-body mg-l-10">
+                                {% if app.user %}
+                                    <h6>{{ app.user.username }}</h6>
+                                    <span>
+                                        {% if app.user.roles.0 == 'ROLE_SUPER_ADMIN' %} Super Admin
+                                        {% elseif app.user.roles.0 == 'ROLE_ADMIN' %} Admin
+                                        {% else %} Invitant
+                                        {% endif %}
+                                    </span>
+                                {% endif %}
+
+                            </div>
+                        </div><!-- media -->
+                    </div>
+                    <div class="dropdown-menu-body">
+                        <a href="{{ path('app_change_password') }}" class="dropdown-item"><i data-feather="briefcase"></i> Mot de passe</a>
+                        <a href="{{ path('app_logout') }}" class="dropdown-item"><i data-feather="log-out"></i> Déconnexion</a>
+                    </div>
+                </div><!-- dropdown-menu -->
+            </div>
+        </div><!-- header-right -->
+    </div>
+    <div class="content-header justify-content-between">
+        <div>
+
+
+        </div>
+    </div>
+    <div class="content-right content-right-components">
+        {% block aide %}{% endblock %}
+    </div>
+    <div class="content-body {% block class%} content-body-components{% endblock %}">
+        {% block body %}{% endblock %}
+    </div>
+</div>
+
+
+{% block javascripts %}
+    <script src="{{ absolute_url(asset('backoffice/lib/jquery/jquery.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/jqueryui/jquery-ui.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/bootstrap/js/bootstrap.bundle.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/feather-icons/feather.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/perfect-scrollbar/perfect-scrollbar.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/js-cookie/js.cookie.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/assets/js/cassie.js')) }}"></script>
+{% endblock %}
+</body>
+</html>
