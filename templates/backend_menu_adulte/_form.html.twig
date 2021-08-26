@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-sm-12 form-group">{{ form_row(form.titre) }}</div>
+</div>
+<div class="col-md-12 checkbox mb-1 ml-3">
+    {{ form_widget(form.statut) }}
+    {{ form_label(form.statut) }}
+</div>
+{{ form_widget(form) }}
+    <div class="text-right mt-5">
+        <a href="{{ path('backend_menu_adulte_index') }}" class="btn btn-outline-secondary">Annuler</a>
+        <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+    </div>
+{{ form_end(form) }}

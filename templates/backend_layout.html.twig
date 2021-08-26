@@ -44,11 +44,12 @@
             <li class="nav-item {% if menu == 'soutien' %}show{% endif %}">
                 <a href="{{ path('backend_soutien_index') }}" class="nav-link {% if sub_menu == 'soutien' %} active{% endif %}"><i data-feather="box"></i> Soutien</a>
             </li>
-            <li class="nav-item {% if menu == 'soutien' %}show{% endif %}">
+            <li class="nav-item {% if menu == 'adulte' %}show{% endif %}">
                 <a href="#" class="nav-link with-sub"><i data-feather="box"></i> Cours adultes</a>
                 <nav class="nav nav-sub">
-                    <a href="#" class="nav-sub-link {% if sub_menu == 'primaire' %} active{% endif %}">Contenu</a>
-                    <a href="#" class="nav-sub-link {% if sub_menu == 'college' %} active{% endif %}">Type</a>
+                    <a href="#" class="nav-sub-link {% if sub_menu == 'contenu' %} active{% endif %}">Contenu</a>
+                    <a href="{{ path('backend_menu_adulte_index') }}" class="nav-sub-link {% if sub_menu == 'menu' %} active{% endif %}">Menu</a>
+                    <a href="#" class="nav-sub-link {% if sub_menu == 'faq' %} active{% endif %}">FAQ</a>
                 </nav>
             </li>
             <li class="nav-item"><a href="#" class="nav-link"><i data-feather="shopping-bag"></i> Newsletter</a></li>

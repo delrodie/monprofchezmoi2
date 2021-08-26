@@ -1,0 +1,98 @@
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}{{ parent() }} Gestion des soutiens{% endblock %}
+
+{% block body %}
+    {{ include('backend/entete.html.twig',{'rubrique': 'Menu-Adulte'}) }}
+    <div class="row">
+        <div class="col text-right">
+            <a href="{{ path('backend_menu_adulte_new') }}" class="btn btn-outline-primary">
+                <i class="fa fa-plus-circle"></i> Ajouter
+            </a>
+        </div>
+
+    </div>
+    <div class="component-section no-code">
+        <h5 id="section1" class="tx-semibold">Menu Adulte</h5>
+        <p class="mg-b-25"></p>
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} alert-dismissible mg-b-25 fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <table id="userList" class="table">
+            <thead>
+            <tr>
+                <th class="wd-5p text-center">#</th>
+                <th class="wd-50p text-center">TITRE</th>
+                <th class="wd-20p text-center">STATUT</th>
+                <th class="wd-15p text-center">ACTION</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for menu_adulte in menu_adultes %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ menu_adulte.titre }}</td>
+                    <td class="text-center">
+                        {% if menu_adulte.statut %}
+                            <span class="badge badge-success">activé</span>
+                        {% else %}
+                            <span class="badge badge-danger">désactivé</span>
+                        {% endif %}
+                    </td>
+                    <td class="text-center">
+                        <a href="{{ path('backend_menu_adulte_show', {'id': menu_adulte.id}) }}" title="Voir"><i class="fa fa-eye"></i></a> &nbsp;
+                        <a href="{{ path('backend_menu_adulte_edit', {'id': menu_adulte.id}) }}" title="Modifier"><i class="fa fa-edit"></i></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/prismjs/themes/prism-tomorrow.css')) }}">
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/datatables.net-dt/css/jquery.dataTables.min.css')) }}">
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css')) }}">
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/select2/css/select2.min.css')) }}">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ absolute_url(asset('backoffice/lib/prismjs/prism.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/datatables.net/js/jquery.dataTables.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/datatables.net-dt/js/dataTables.dataTables.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/datatables.net-responsive/js/dataTables.responsive.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/select2/js/select2.min.js')) }}"></script>
+    <script>
+        $(function(){
+            'use strict'
+
+            $('#userList').DataTable({
+                //responsive: true,
+                language: {
+                    searchPlaceholder: 'Recherche...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ elements/page',
+                }
+            });
+
+
+            // Select2
+            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+        });
+    </script>
+{% endblock %}
