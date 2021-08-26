@@ -42,11 +42,7 @@
                 </nav>
             </li>
             <li class="nav-item {% if menu == 'soutien' %}show{% endif %}">
-                <a href="#" class="nav-link with-sub"><i data-feather="box"></i> Soutien</a>
-                <nav class="nav nav-sub">
-                    <a href="#" class="nav-sub-link {% if sub_menu == 'primaire' %} active{% endif %}">Contenu</a>
-                    <a href="#" class="nav-sub-link {% if sub_menu == 'college' %} active{% endif %}">Niveau</a>
-                </nav>
+                <a href="{{ path('backend_soutien_index') }}" class="nav-link {% if sub_menu == 'soutien' %} active{% endif %}"><i data-feather="box"></i> Soutien</a>
             </li>
             <li class="nav-item {% if menu == 'soutien' %}show{% endif %}">
                 <a href="#" class="nav-link with-sub"><i data-feather="box"></i> Cours adultes</a>

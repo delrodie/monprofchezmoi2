@@ -27,3 +27,4 @@ services:
     App\Utilities\GestionMedia:
         arguments:
             $presentationDirectory: '%kernel.project_dir%/public/upload/presentation'
+            $soutienDirectory: '%kernel.project_dir%/public/upload/soutien'
