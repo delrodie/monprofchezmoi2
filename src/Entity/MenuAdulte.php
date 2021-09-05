@@ -32,6 +32,11 @@ class MenuAdulte
      */
     private $statut;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Adulte::class, mappedBy="menu", cascade={"persist", "remove"})
+     */
+    private $adulte;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,28 @@ class MenuAdulte
     public function setStatut(?bool $statut): self
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getAdulte(): ?Adulte
+    {
+        return $this->adulte;
+    }
+
+    public function setAdulte(?Adulte $adulte): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($adulte === null && $this->adulte !== null) {
+            $this->adulte->setMenu(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($adulte !== null && $adulte->getMenu() !== $this) {
+            $adulte->setMenu($this);
+        }
+
+        $this->adulte = $adulte;
 
         return $this;
     }

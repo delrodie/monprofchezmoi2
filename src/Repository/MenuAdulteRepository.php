@@ -19,6 +19,11 @@ class MenuAdulteRepository extends ServiceEntityRepository
         parent::__construct($registry, MenuAdulte::class);
     }
 
+    public function liste()
+    {
+        return $this->createQueryBuilder('m')->orderBy('m.titre', 'ASC');
+    }
+
     // /**
     //  * @return MenuAdulte[] Returns an array of MenuAdulte objects
     //  */
