@@ -1,0 +1,21 @@
+{{ form_start(form) }}
+    <div class="row form-group">
+        <div class="col-md-12 mt-2">{{ form_row(form.titre) }}</div>
+        <div class="col-md-12 mt-3">{{ form_row(form.description) }}</div>
+        <div class="col-md-6 mt-3 mb-3">{{ form_row(form.media) }}</div>
+        {% if cover.media %}
+            <div class="col-md-6 mb-3 mt-5">
+                <img src="{{ absolute_url(asset('upload/cover/'~ cover.media)) }}" alt="{{ cover.titre }}" class="img-thumbnail" width="300" style="float: left; margin-right: 20px;">
+            </div>
+        {% endif %}
+        <div class="col-md-12 checkbox mb-1 ml-4">
+            {{ form_widget(form.statut) }}
+            {{ form_label(form.statut) }}
+        </div>
+    </div>
+    {{ form_widget(form) }}
+    <div class="text-right mt-5">
+        <a href="{{ path('backend_cover_index') }}" class="btn btn-outline-secondary">Annuler</a>
+        <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+    </div>
+{{ form_end(form) }}

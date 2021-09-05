@@ -36,7 +36,7 @@
             <li class="nav-item {% if menu == 'gestion' %}show{% endif %}">
                 <a href="#" class="nav-link with-sub"><i data-feather="box"></i> Gestion</a>
                 <nav class="nav nav-sub">
-                    <a href="#" class="nav-sub-link {% if sub_menu == 'cover' %}active{% endif %}">Cover</a>
+                    <a href="{{ path('backend_cover_index') }}" class="nav-sub-link {% if sub_menu == 'cover' %}active{% endif %}">Cover</a>
                     <a href="{{ path('backend_presentation_index') }}" class="nav-sub-link {% if sub_menu == 'presentation' %}active{% endif %}">Presentation</a>
                     <a href="#" class="nav-sub-link {% if sub_menu == 'contact' %}active{% endif %}">Contact</a>
                 </nav>
