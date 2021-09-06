@@ -23,7 +23,7 @@ class FrontendAdulteController extends AbstractController
         $menu = $this->getDoctrine()->getRepository(MenuAdulte::class)->findByVar($slug); //dd($menu);
 
         if ($menu) return $this->redirectToRoute('frontend_adulte_show',['slug'=>$menu->getSlug()]);
-        else return $this->redirectToRoute('app_home');
+        else return $this->redirectToRoute('frontend_erreur',['slug'=>'404']);
     }
 
     /**

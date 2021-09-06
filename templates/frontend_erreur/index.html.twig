@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ erreur.titre }}{% endblock %}
+
+{% block body %}
+
+    <div id="rs-page-error" class="rs-page-error">
+        <div class="error-text">
+            <h1 class="error-code">{{ erreur.code }}</h1>
+            <h3 class="error-message">{{ erreur.titre }}</h3>
+            <a class="readon orange-btn" href="javascript:history.back()" title="HOME">Retour</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block menu %}
+    {{ include('menu_page.html.twig') }}
+{% endblock %}
