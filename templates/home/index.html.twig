@@ -68,7 +68,7 @@
                                 <p class="desc">{{ soutien.resume|slice(0,72) }} ...
 
                                 <div class="btn-part">
-                                    <a href="#">Voir détails</a>
+                                    <a href="{{ absolute_url(path('frontend_soutien_show', {'slug': soutien.slug}) )}}">Voir détails</a>
                                 </div>
                             </div>
                         </div>
@@ -84,14 +84,14 @@
             <div class="container">
                 <div class="row">
                     <div class="offset-lg-6"></div>
-                    <div class="col-lg-6 pl-70 md-pl-15">
+                    <div class="col-lg-6 pl-70 md-pl-15 wow fadeInLeft">
                         <div class="sec-title3 mb-40">
                             <h2 class="title white-color mb-16">Pourquoi nous choisir ?</h2>
                             <div class="desc white-color pr-100 md-pr-0">
                                 {{ presentation.resume|raw }}...
                             </div>
                         </div>
-                        <div claDEGREEss="btn-part">
+                        <div class="btn-part">
                             <a class="readon orange-btn transparent" href="#">S'inscrire</a>
                         </div>
                     </div>
@@ -212,4 +212,91 @@
             right: 0;
         }
     </style>
+{% endblock %}
+
+{% block meta %}
+    <meta name="keywords" content="soutien, scolaire, cours, adulte"  />
+    <meta name="description" content="Quels que soient vos objectifs ou votre niveau, les cours de soutien Monprofchezmoi offrent à l'élève un enseignement totalement personnalisé afin que chacun puisse avancer à son rythme." />
+    <meta name="revisit" content="7 days" />
+    <meta name="revisit-after" content="7 days">
+    <meta name="Author" content="MONPROFCHEZMOI, Delrodie AMOIKON">
+    <meta name="Copyright" content="{{ absolute_url(path('app_home')) }}">
+    <meta name="Content-Language" content="FR">
+    <meta name="distribution" content="global" />
+    <meta name="Audience" content="All" />
+    <meta name="Robots" content="full">
+
+    <link rel="canonical" href="{{ absolute_url(path('app_home')) }}" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:type" content="Item" />
+    <meta property="og:title" content="Mon prof chez moi - soutien scolaire" />
+    <meta property="og:description" content="Quels que soient vos objectifs ou votre niveau, les cours de soutien Monprofchezmoi offrent à l'élève un enseignement totalement personnalisé afin que chacun puisse avancer à son rythme." />
+    <meta property="og:url" content="{{ absolute_url(path('app_home')) }}" />
+    <meta property="og:site_name" content="MONPROFCHEZMOI" />
+    <meta property="article:section" content="Item" />
+    <meta property="article:published_time" content="2021-09-07T15:25:59+00:00" />
+    <meta property="og:image" content="{{ absolute_url(asset('assets/images/logo2_01.png')) }}" />
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:description" content="Quels que soient vos objectifs ou votre niveau, les cours de soutien Monprofchezmoi offrent à l'élève un enseignement totalement personnalisé afin que chacun puisse avancer à son rythme."/>
+    <meta name="twitter:title" content="Mon prof chez moi - soutien scolaire"/>
+    <meta name="twitter:domain" content="MONPROFCHEZMOI"/>
+    <meta name="twitter:image:src" content="{{ absolute_url(asset('assets/images/logo2_01.png')) }}"/>
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "{{ absolute_url(path('app_home')) }}"
+            },
+            "headline": "Mon prof chez moi - soutien scolaire",
+            "image": [
+                "{{ absolute_url(asset('assets/images/logo2_01.png')) }}",
+                "{{ absolute_url(asset('assets/images/logo2_01.png')) }}"
+            ],
+            "datePublished": "2021-09-07T15:25:59+00:00",
+            "dateModified": "2021-09-07T15:25:59+00:00",
+            "author": {
+                "@type": "Person",
+                "name": "Delrodie AMOIKON"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "MONPROFCHEZMOI",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ absolute_url(asset('assets/images/logo2_01.png')) }}"
+                }
+            },
+            "description": "Quels que soient vos objectifs ou votre niveau, les cours de soutien Monprofchezmoi offrent à l'élève un enseignement totalement personnalisé afin que chacun puisse avancer à son rythme."
+        }
+    </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "Organization",
+            "url": "{{ absolute_url(path('app_home')) }}",
+            "contactPoint": [{
+                "@type": "ContactPoint",
+                "telephone": "+225 22 00 68 41",
+                "contactType": "Direction",
+                "contactOption": "TollFree",
+                "areaServed": "FR"
+            },{
+                "@type": "ContactPoint",
+                "telephone": "+225 22 00 68 41",
+                "contactType": "Direction",
+                "contactOption": "TollFree",
+                "areaServed": [
+                    "CI",
+                    "FR"
+                ],
+                "availableLanguage": [
+                    "French",
+                    "English"
+                ]
+            }]
+        }
+    </script>
 {% endblock %}

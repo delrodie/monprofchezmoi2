@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{% block title %}Mon Prof chez moi{% endblock %}</title>
+
+    {% block meta %}{% endblock %}
+
     <link rel="shortcut icon" type="image/x-icon" href="{{ absolute_url(asset('assets/images/favico_0.png')) }}">
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ absolute_url(asset('assets/css/monprofchezmoi.css')) }}">
@@ -62,14 +65,7 @@
                                                 </li>
                                                 <li class="menu-item-has-children">
                                                     <a href="#">Soutien</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="#">Primaire</a> </li>
-                                                        <li><a href="#">Collège</a> </li>
-                                                        <li><a href="#">Lycée</a> </li>
-                                                        <li><a href="#">Supérieur</a> </li>
-                                                        <li><a href="#">Spécialisé</a></li>
-                                                        <li><a href="#">Anglais pour enfant</a></li>
-                                                    </ul>
+                                                    {{ render(url('frontend_soutien_menu')) }}
                                                 </li>
 
                                                 <li class="rs-mega-menu mega-rs menu-item-has-children"> <a href="#">Cours adultes</a>
