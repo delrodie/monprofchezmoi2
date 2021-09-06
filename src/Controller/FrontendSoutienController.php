@@ -53,6 +53,7 @@ class FrontendSoutienController extends AbstractController
             'soutien' => $soutien,
             'precedent' =>$soutienRepository->findOneBy(['affichage'=>$prec]),
             'suivant' => $soutienRepository->findOneBy(['affichage'=>$suiv]),
+            'menu' => 'soutien'
         ]);
     }
 }

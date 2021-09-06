@@ -24,6 +24,15 @@ class MenuAdulteRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('m')->orderBy('m.titre', 'ASC');
     }
 
+    public function findByVar($var)
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.titre LIKE :var' )
+            ->setParameter('var', '%'.$var.'%')
+            ->getQuery()->getOneOrNullResult()
+            ;
+    }
+
     // /**
     //  * @return MenuAdulte[] Returns an array of MenuAdulte objects
     //  */

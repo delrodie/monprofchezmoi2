@@ -27,7 +27,20 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'cover' => $cover,
             'soutiens' => $this->utility->soutien(),
-            'presentation' => $this->getDoctrine()->getRepository(Presentation::class)->findOneBy([],['id'=>'DESC'])
+            'presentation' => $this->getDoctrine()->getRepository(Presentation::class)->findOneBy([],['id'=>'DESC']),
+            'menu' => 'home'
+        ]);
+    }
+
+    /**
+     * @Route("/pourquoi-nous-choisir", name="frontend_presentation", methods={"GET"})
+     */
+    public function presentation()
+    {
+
+        return $this->render('home/presentation.html.twig',[
+            'presentation' => $this->getDoctrine()->getRepository(Presentation::class)->findOneBy([],['id'=>"DESC"]),
+            'menu' => 'presentation'
         ]);
     }
 }
