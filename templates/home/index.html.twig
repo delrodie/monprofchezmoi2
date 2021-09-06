@@ -1,19 +1,215 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Mon prof chez moi{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div id="rs-banner" class="rs-banner style1">
+        <div class="container">
+            <div class="banner-content text-center">
+                <div class="desc mb-35 wow wow fadeInRight" data-wow-delay="900ms" data-wow-duration="3000ms">{{ cover.titre }}</div>
+                <h1 class="banner-title wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="3000ms">{{ cover.description }}</h1>
+                <div class="banner-btn wow fadeInUp" data-wow-delay="1500ms" data-wow-duration="2000ms">
+                    <div class="row search">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-4 mt-2">
+                                    <select name="nom" id="nom" class="form-control">
+                                        <option value="">Quel domaine vous intéresse?</option>
+                                        <option value="">Toutes les matières (primaire)</option>
+                                        <option value="">Mathématiques</option>
+                                        <option value="">...</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4 mt-2">
+                                    <select name="prenom" id="prenom" class="form-control">
+                                        <option value="">Quel niveau?</option>
+                                        <option value="">CP</option>
+                                        <option value="">CE1</option>
+                                        <option value="">...</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3 mt-2">
+                                    <select name="sexe" id="sexe" class="form-control">
+                                        <option value="">Les cours sont pour..</option>
+                                        <option value="">Mon enfant</option>
+                                        <option value="">Moi-même</option>
+                                        <option value="">Une autre relation</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-1 mt-2">
+                                    <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="rs-degree style1 modify gray-bg pt-100 pb-70 md-pt-70 md-pb-40">
+        <div class="container">
+            <div class="row y-middle">
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="sec-title wow fadeInUp" data-wow-delay="300ms" data-wow-duration="2000ms">
+                        <div class="sub-title primary">Nos soutiens</div>
+                        <h2 class="title mb-0">Scolaires & spécialisés</h2>
+                    </div>
+                </div>
+                {% for soutien in soutiens %}
+                    <div class="col-lg-4 col-md-6 mb-30 wow{% if loop.index % 2 %}  fadeInRight{% else %} fadeInDown{% endif %}">
+                        <div class="degree-wrap">
+                            <img src="{{ absolute_url(asset('upload/soutien/'~ soutien.media)) }}" alt="{{ soutien.titre }}">
+                            <div class="title-part">
+                                <h4 class="title">{{ soutien.titre }}</h4>
+                            </div>
+                            <div class="content-part">
+                                <h4 class="title"><a href="#">{{ soutien.titre }}</a></h4>
+                                <p class="desc">{{ soutien.resume|slice(0,72) }} ...
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ path('backend_dashboard') }}">Backend</a></code></li>
-    </ul>
-</div>
+                                <div class="btn-part">
+                                    <a href="#">Voir détails</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+    <div class="rs-cta main-home">
+        <div class="partition-bg-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-6"></div>
+                    <div class="col-lg-6 pl-70 md-pl-15">
+                        <div class="sec-title3 mb-40">
+                            <h2 class="title white-color mb-16">Pourquoi nous choisir ?</h2>
+                            <div class="desc white-color pr-100 md-pr-0">
+                                {{ presentation.resume|raw }}...
+                            </div>
+                        </div>
+                        <div claDEGREEss="btn-part">
+                            <a class="readon orange-btn transparent" href="#">S'inscrire</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rs-faq-part style1 orange-color pt-100 pb-100 md-pt-70 md-pb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 padding-0">
+                    <div class=" main-part">
+                        <div class="title mb-40 md-mb-15">
+                            <h2 class="text-part">Les adultes</h2>
+                        </div>
+                        <div class="faq-content">
+                            <div id="accordion" class="accordion">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="card-link" data-toggle="collapse" href="#collapseOne">Voulez-vous apprendre une langue étrangères ?</a>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                        <div class="card-body">
+                                            Aujourd'hui, la maîtrise d'une ou plusieurs langues étrangères est devenue indispensable, pour les entreprises comme pour les individus
+                                            <em><a href="#">Lire suite</a></em>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+
+                                        <a class="card-link collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false">Souhaitez-vous retrouver la maîtrise d'une matière?</a>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" data-parent="#accordion" style="">
+                                        <div class="card-body">
+                                            Que l'on ait 30, 40, 50 et même 60ans - les seniors ne sont pas excluts de l'apprentissage-, de nombreuses raisons peuvent pousser chaque apprenant
+                                            à prendre des cours individuels pour apprendre de nouvelles compétences.
+                                            <br> <em><a href="#">Lire suite</a></em>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+
+                                        <a class="card-link collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false">Souhaitez-vous devenir de meilleurs orateurs?</a>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" data-parent="#accordion" style="">
+                                        <div class="card-body">
+                                            <strong>Monprofchezmoi</strong> vous accompagne dans l'apprentissage des techniques de Prise de parole en public sous toutes ses formes
+                                            <br> <em><a href="#">Lire suite</a></em>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 padding-0">
+                    <div class="img-part media-icon orange-color">
+                        <a class="popup-videos" href="https://www.youtube.com/watch?v=atMUy_bPoQI">
+                            <i class="fa fa-play"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .rs-banner.style1 {
+            padding: 125px 0 425px;
+            background: url({{ absolute_url(asset('upload/cover/'~ cover.media)) }});
+            background-size: cover;
+            background-position: center;
+        }
+
+        .rs-banner.style1 .banner-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .rs-banner.style1 .banner-content .banner-title {
+            font-size: 55px;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .search{
+            background-color: #fff;
+            border-radius: 10px;
+        }
+        .search .row{
+            padding: 20px 5px;
+        }
+        .search select{
+            font-size: 18px;
+            display: inline-block;
+        }
+        .rs-banner.style1 .banner-content .desc {
+            font-size: 40px;
+            line-height: 30px;
+            padding-top: 100px;
+            color: var(--orange-color);
+        }
+        .rs-cta.main-home .partition-bg-wrap:after {
+            background: url({{ absolute_url(asset('upload/cover/'~ cover.media)) }});
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .rs-cta.main-home .partition-bg-wrap:before {
+            background: url({{ absolute_url(asset('/assets/images/main-home.jpg')) }});
+            background-size: cover;
+            background-repeat: no-repeat;
+            right: 0;
+        }
+    </style>
 {% endblock %}

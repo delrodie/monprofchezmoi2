@@ -1,0 +1,62 @@
+@import url('bootstrap.min.css');
+@import url('font-awesome.min.css');
+@import url('animate.css');
+@import url('owl.carousel.css');
+@import url('slick.css');
+@import url('off-canvas.css');
+@import url('../fonts/linea-fonts.css');
+@import url('../fonts/flaticon.css');
+@import url('magnific-popup.css');
+@import url('rsmenu-main.css');
+@import url('rs-spacing.css');
+@import url('style.css');
+@import url('responsive.css');
+
+:root{
+    --blue-color: #1572b5;
+    --orange-color: #f1910d;
+    --orangedark-color: #e85616;
+    --gray-color: #f1f1f1;
+}
+
+/* orange #ff5421 */
+
+.slider-overlay{
+    position: absolute;
+    background: rgba(0, 0, 0, 1);
+    transition: .5s ease;
+    opacity: 1;
+    width: 100%;
+    height: auto;
+}
+.rs-slider.main-home .slider-content .content-part .sl-title {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+.rs-slider.style1 .slider-content .sl-title {
+    font-size: 29px;
+}
+.rs-slider.main-home .slider-content .content-part .sl-sub-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.rs-slider.style1 .slider-content .sl-sub-title {
+    font-size: 27px;
+}
+.rs-slider.style1 .slider-content .sl-sub-title {
+    font-size: 22px;
+}
+
+.rs-degree.style1 .degree-wrap .content-part {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotateY(90deg);
+    text-align: center;
+    background: var(--blue-color);
+    border-radius: 3px;
+    padding: 78px 35px 0;
+    color: #ffffff;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
