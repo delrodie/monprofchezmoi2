@@ -56,4 +56,14 @@ class FrontendSoutienController extends AbstractController
             'menu' => 'soutien'
         ]);
     }
+	
+	/**
+	 * @Route("/menu/", name="frontend_soutien_footer")
+	 */
+	public function menu(SoutienRepository $soutienRepository)
+	{
+		return $this->render('frontend_soutien/menu.html.twig',[
+			'soutiens' => $soutienRepository->findBy([],['affichage'=>"ASC"])
+		]);
+	}
 }

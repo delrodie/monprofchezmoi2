@@ -1,0 +1,5 @@
+
+{% for soutien in soutiens %}
+	<li><a href="{{ absolute_url(path('frontend_soutien_show', {'slug': soutien.slug})) }}">{{ soutien.titre }}</a></li>
+{% endfor %}
+

@@ -167,7 +167,7 @@
                     </div>
                     <ul class="footer_social">
                         <li>
-                            <a href="#" target="_blank"><span><i class="fa fa-facebook"></i></span></a>
+                            <a href="https://www.facebook.com/MonprofchezmoiSoutienscolaire/" target="_blank"><span><i class="fa fa-facebook"></i></span></a>
                         </li>
                         <li>
                             <a href="# " target="_blank"><span><i class="fa fa-twitter"></i></span></a>
@@ -181,12 +181,8 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 pl-50 md-pl-15 footer-widget md-mb-50">
                     <h3 class="widget-title">Rubriques</h3>
                     <ul class="site-map">
-                        <li><a href="#">Pourquoi nous choisir?</a></li>
-                        <li><a href="#">Primaire</a></li>
-                        <li><a href="#">Collège</a></li>
-                        <li><a href="#">Lycée</a></li>
-                        <li><a href="#">Supérieur</a></li>
-                        <li><a href="#">Spécialisé</a></li>
+                        <li><a href="{{ path('frontend_presentation') }}">Pourquoi nous choisir?</a></li>
+                        {{ render(url('frontend_soutien_menu')) }}
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 pl-50 md-pl-15 footer-widget md-mb-50">
