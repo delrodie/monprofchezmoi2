@@ -18,7 +18,7 @@ class Utility
 
     public function soutien()
     {
-        $soutiens = $this->soutienRepository->findBy([],['affichage'=>"ASC"]);
+        $soutiens = $this->soutienRepository->findBy([],['affichage'=>"ASC"]); 
 
         return $soutiens;
     }
