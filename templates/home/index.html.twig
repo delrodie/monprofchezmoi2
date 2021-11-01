@@ -65,7 +65,7 @@
                             </div>
                             <div class="content-part">
                                 <h4 class="title"><a href="#">{{ soutien.titre }}</a></h4>
-                                <p class="desc">{{ soutien.resume|raw|slice(0,72) }} ...
+                                <p class="desc">{{ soutien.resume|slice(0,72)|raw }} ...
 
                                 <div class="btn-part">
                                     <a href="{{ absolute_url(path('frontend_soutien_show', {'slug': soutien.slug}) )}}">Voir détails</a>
