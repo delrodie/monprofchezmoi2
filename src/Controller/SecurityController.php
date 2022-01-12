@@ -26,7 +26,7 @@ class SecurityController extends AbstractController
         $verif = $this->getDoctrine()->getRepository(User::class)->findOneBy(['email'=>'delrodieamoikon@gmail.com']);
         if (!$verif){
             $this->security->initalisationUser();
-            $this->addFlash('success', "Compte utilisateur initialisé avec succès");
+            $this->addFlash('success', "Compte utilisateur 'monprofchezmoi2021' initialisé avec succès");
         }
 
         // if ($this->getUser()) {

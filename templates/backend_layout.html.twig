@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/ionicons/css/ionicons.min.css')) }}">
     {% endblock %}
     <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/assets/css/cassie.css')) }}">
-    <link rel="icon" href="{{ absolute_url(asset('assets/images/favico.ico')) }}">
+    <link rel="icon" href="{{ absolute_url(asset('assets/images/favico_0.png')) }}">
 
 
 </head>
@@ -63,7 +63,7 @@
                 <li class="nav-item {% if menu == 'admin' %}show{% endif %}">
                     <a href="#" class="nav-link with-sub {% if menu == 'admin' %}active{% endif %}"><i data-feather="layers"></i> Administration</a>
                     <nav class="nav nav-sub">
-                        <a href="#" class="nav-sub-link {% if sub_menu == 'usermenu' %} active{% endif %}">Utilisateur</a>
+                        <a href="{{ absolute_url(path('admin_user_index')) }}" class="nav-sub-link {% if sub_menu == 'usermenu' %} active{% endif %}">Utilisateur</a>
                     </nav>
                 </li>
             </ul>

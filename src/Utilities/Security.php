@@ -27,7 +27,7 @@ class Security
      *
      * @return bool
      */
-    public function initalisationUser()
+    public function initalisationUser(): bool
     {
         $user = new User();
         //$user->setUsername('delrodie');
@@ -46,10 +46,10 @@ class Security
      *
      * @return bool
      */
-    public function connexion()
+    public function connexion(): bool
     {
         //$user = $this->security->getUser();
-        $user = $this->userRepository->findOneBy(['username'=>$this->security->getUser()->getUsername()]); //dd($user);
+        $user = $this->userRepository->findOneBy(['email'=>$this->security->getUser()->getUserIdentifier()]); //dd($user);
 
         $nombre_connexion = $user->getConnexion();
         //$date = new \DateTime();

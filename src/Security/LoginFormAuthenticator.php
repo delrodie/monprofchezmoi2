@@ -23,10 +23,12 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     public const LOGIN_ROUTE = 'app_login';
 
     private $urlGenerator;
-
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+	private $_security;
+	
+	public function __construct(UrlGeneratorInterface $urlGenerator, \App\Utilities\Security $_security)
     {
         $this->urlGenerator = $urlGenerator;
+	    $this->_security = $_security;
     }
 
     public function authenticate(Request $request): PassportInterface
@@ -46,6 +48,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+		$this->_security->connexion();
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
