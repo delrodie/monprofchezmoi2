@@ -32,7 +32,7 @@ class HomeController extends AbstractController
 		//return $this->redirectToRoute('app_maintenance');
         $cover = $this->getDoctrine()->getRepository(Cover::class)->findOneBy([],['id'=>'DESC']);
 
-        return $this->render('home/index.html.twig', [
+        return $this->render('home/maintenance.html.twig', [
             'cover' => $cover,
             'soutiens' => $this->utility->soutien(),
             'presentation' => $this->getDoctrine()->getRepository(Presentation::class)->findOneBy([],['id'=>'DESC']),
