@@ -52,6 +52,14 @@
                     <a href="#" class="nav-sub-link {% if sub_menu == 'faq' %} active{% endif %}">FAQ</a>
                 </nav>
             </li>
+            <li class="nav-item {% if menu == 'recherche' %}show{% endif %}">
+                <a href="#" class="nav-link with-sub"><i data-feather="box"></i> Formulaire recherche</a>
+                <nav class="nav nav-sub">
+                    <a href="{{ absolute_url(path('backend_domaine_index')) }}" class="nav-sub-link {% if sub_menu == 'domaine' %} active{% endif %}">Domaine</a>
+                    <a href="{{ path('backend_menu_adulte_index') }}" class="nav-sub-link {% if sub_menu == 'niveau' %} active{% endif %}">Niveau</a>
+                    <a href="#" class="nav-sub-link {% if sub_menu == 'cible' %} active{% endif %}">Cible</a>
+                </nav>
+            </li>
             <li class="nav-item"><a href="#" class="nav-link"><i data-feather="shopping-bag"></i> Newsletter</a></li>
 
         </ul>

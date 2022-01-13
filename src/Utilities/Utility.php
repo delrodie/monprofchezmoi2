@@ -3,6 +3,7 @@
 namespace App\Utilities;
 
 use App\Repository\SoutienRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
 
 class Utility
@@ -33,6 +34,18 @@ class Utility
     {
         return substr(strip_tags($string), 0, 155);
     }
+	
+	/**
+	 * Formattage du slug
+	 *
+	 * @param $str
+	 * @return string
+	 */
+	public function slug($str): string
+	{
+		$slugify = new Slugify();
+		return $slugify->slugify($str);
+	}
 
 
 
