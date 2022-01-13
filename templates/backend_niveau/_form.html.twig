@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+<div class="row form-group">
+    <div class="col-12 mt-3">{{ form_row(form.type) }}</div>
+    <div class="col-12 mt-3">{{ form_row(form.libelle) }}</div>
+    <div class="col-12 mt-3">
+        {{ form_widget(form.statut) }} {{ form_label(form.statut) }}
+    </div>
+</div>
+<div class="text-right mt-5">
+    {{ form_widget(form) }}
+    <a href="{{ path('backend_domaine_index') }}" class="btn btn-outline-secondary">Annuler</a>
+    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+</div>
+
+{{ form_end(form) }}
