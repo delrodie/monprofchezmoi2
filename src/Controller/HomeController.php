@@ -29,7 +29,7 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
-		return $this->redirectToRoute('app_maintenance');
+		//return $this->redirectToRoute('app_maintenance');
         $cover = $this->getDoctrine()->getRepository(Cover::class)->findOneBy([],['id'=>'DESC']);
 
         return $this->render('home/index.html.twig', [
