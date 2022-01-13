@@ -3,11 +3,18 @@
 namespace App\Controller;
 
 use App\Entity\Cover;
+use App\Entity\Domaine;
+use App\Entity\Niveau;
 use App\Entity\Presentation;
 use App\Utilities\Utility;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class HomeController extends AbstractController
 {
@@ -44,4 +51,24 @@ class HomeController extends AbstractController
             'menu' => 'presentation'
         ]);
     }
+	
+	/**
+	 * @Route("/filtre-section-accueil/", name="frontend_filtre_accueil", methods={"GET","POST"})
+	 */
+	public function filtre(Request $request): \Symfony\Component\HttpFoundation\JsonResponse
+	{
+		//Initialisation
+		$encoders = [new XmlEncoder(), new JsonEncoder()];
+		$normalizers = [new ObjectNormalizer()];
+		$serializer = new Serializer($normalizers, $encoders);
+		
+		$requestDomaine = $request->get('value'); //dd($requestDomaine);
+		$niveau = [];
+		$domaine = $this->getDoctrine()->getRepository(Domaine::class)->findOneBy(['id'=>$requestDomaine]);
+		if ($domaine){
+			$niveau = $this->getDoctrine()->getRepository(Niveau::class)->findBy(['type'=>$domaine->getType()]);
+		}
+		
+		return $this->json($niveau);
+	}
 }
