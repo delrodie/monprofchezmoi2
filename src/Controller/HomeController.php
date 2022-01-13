@@ -29,6 +29,7 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
+		return $this->redirectToRoute('app_maintenance');
         $cover = $this->getDoctrine()->getRepository(Cover::class)->findOneBy([],['id'=>'DESC']);
 
         return $this->render('home/index.html.twig', [
@@ -70,5 +71,21 @@ class HomeController extends AbstractController
 		}
 		
 		return $this->json($niveau);
+	}
+	
+	/**
+	 * @Route("/maintenance/2022", name="app_maintenance")
+	 */
+	public function maintenance()
+	{
+		$cover = $this->getDoctrine()->getRepository(Cover::class)->findOneBy([],['id'=>'DESC']);
+		
+		return $this->render('home/maintenance.html.twig', [
+			'cover' => $cover,
+			'soutiens' => $this->utility->soutien(),
+			'presentation' => $this->getDoctrine()->getRepository(Presentation::class)->findOneBy([],['id'=>'DESC']),
+			'menu' => 'home',
+			'domaines' => $this->utility->domaine()
+		]);
 	}
 }

@@ -1,0 +1,189 @@
+{% extends 'maintenance_layout.html.twig' %}
+
+{% block title %}Mon prof chez moi{% endblock %}
+
+{% block body %}
+    <div id="rs-banner" class="rs-banner style1">
+        <div class="container">
+            <div class="banner-content text-center">
+                <div class="desc mb-35 wow wow fadeInRight" data-wow-delay="900ms" data-wow-duration="3000ms"></div>
+                <h1 class="banner-title wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="3000ms">Site en maintenance...</h1>
+                <div class="banner-btn wow fadeInUp" data-wow-delay="1500ms" data-wow-duration="2000ms">
+                    <div class="row search">
+                        <div class="col-sm-12">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/select2/css/select2.min.css')) }}">
+    <style>
+        .rs-banner.style1 {
+            padding: 125px 0 425px;
+            background: url({{ absolute_url(asset('upload/cover/'~ cover.media)) }});
+            background-size: cover;
+            background-position: center;
+        }
+
+        .rs-banner.style1 .banner-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .rs-banner.style1 .banner-content .banner-title {
+            font-size: 55px;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .search{
+            background-color: #fff;
+            border-radius: 10px;
+        }
+        .search .row{
+            padding: 20px 5px;
+        }
+        .search select{
+            font-size: 18px;
+            display: inline-block;
+        }
+        .rs-banner.style1 .banner-content .desc {
+            font-size: 40px;
+            line-height: 30px;
+            padding-top: 100px;
+            color: var(--orange-color);
+        }
+        .rs-cta.main-home .partition-bg-wrap:after {
+            background: url({{ absolute_url(asset('upload/cover/'~ cover.media)) }});
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .rs-cta.main-home .partition-bg-wrap:before {
+            background: url({{ absolute_url(asset('/assets/images/main-home.jpg')) }});
+            background-size: cover;
+            background-repeat: no-repeat;
+            right: 0;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ absolute_url(asset('backoffice/lib/select2/js/select2.min.js')) }}"></script>
+    <script>
+        $('.select').select2();
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#domaine').on('change', function () {
+                let domaineId = $(this).val();
+                $.get("{{ absolute_url(path('frontend_filtre_accueil')) }}", {value: domaineId})
+                .done(function (data) {
+                    if (data){ console.log(data)
+                        $('#niveau').empty();
+                        $('#niveau').append("<option value=''>-</option>")
+                        for (let i = 0; i < data.length; i++){
+                            const item = data[i]; console.log(item)
+                            $('#niveau').append(
+                                    "<option value="+item.id+">"+item.libelle+"</option>"
+                            )
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+{% endblock %}
+
+{% block meta %}
+    <meta name="keywords" content="soutien, scolaire, cours, adulte"  />
+    <meta name="description" content="Quels que soient vos objectifs ou votre niveau, les cours de soutien Monprofchezmoi offrent à l'élève un enseignement totalement personnalisé afin que chacun puisse avancer à son rythme." />
+    <meta name="revisit" content="7 days" />
+    <meta name="revisit-after" content="7 days">
+    <meta name="Author" content="MONPROFCHEZMOI, Delrodie AMOIKON">
+    <meta name="Copyright" content="{{ absolute_url(path('app_home')) }}">
+    <meta name="Content-Language" content="FR">
+    <meta name="distribution" content="global" />
+    <meta name="Audience" content="All" />
+    <meta name="Robots" content="full">
+
+    <link rel="canonical" href="{{ absolute_url(path('app_home')) }}" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:type" content="Item" />
+    <meta property="og:title" content="Mon prof chez moi - soutien scolaire" />
+    <meta property="og:description" content="Quels que soient vos objectifs ou votre niveau, les cours de soutien Monprofchezmoi offrent à l'élève un enseignement totalement personnalisé afin que chacun puisse avancer à son rythme." />
+    <meta property="og:url" content="{{ absolute_url(path('app_home')) }}" />
+    <meta property="og:site_name" content="MONPROFCHEZMOI" />
+    <meta property="article:section" content="Item" />
+    <meta property="article:published_time" content="2021-09-07T15:25:59+00:00" />
+    <meta property="og:image" content="{{ absolute_url(asset('assets/images/logo2_01.png')) }}" />
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:description" content="Quels que soient vos objectifs ou votre niveau, les cours de soutien Monprofchezmoi offrent à l'élève un enseignement totalement personnalisé afin que chacun puisse avancer à son rythme."/>
+    <meta name="twitter:title" content="Mon prof chez moi - soutien scolaire"/>
+    <meta name="twitter:domain" content="MONPROFCHEZMOI"/>
+    <meta name="twitter:image:src" content="{{ absolute_url(asset('assets/images/logo2_01.png')) }}"/>
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "{{ absolute_url(path('app_home')) }}"
+            },
+            "headline": "Mon prof chez moi - soutien scolaire",
+            "image": [
+                "{{ absolute_url(asset('assets/images/logo2_01.png')) }}",
+                "{{ absolute_url(asset('assets/images/logo2_01.png')) }}"
+            ],
+            "datePublished": "2021-09-07T15:25:59+00:00",
+            "dateModified": "2021-09-07T15:25:59+00:00",
+            "author": {
+                "@type": "Person",
+                "name": "Delrodie AMOIKON"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "MONPROFCHEZMOI",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ absolute_url(asset('assets/images/logo2_01.png')) }}"
+                }
+            },
+            "description": "Quels que soient vos objectifs ou votre niveau, les cours de soutien Monprofchezmoi offrent à l'élève un enseignement totalement personnalisé afin que chacun puisse avancer à son rythme."
+        }
+    </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "Organization",
+            "url": "{{ absolute_url(path('app_home')) }}",
+            "contactPoint": [{
+                "@type": "ContactPoint",
+                "telephone": "+225 22 00 68 41",
+                "contactType": "Direction",
+                "contactOption": "TollFree",
+                "areaServed": "FR"
+            },{
+                "@type": "ContactPoint",
+                "telephone": "+225 22 00 68 41",
+                "contactType": "Direction",
+                "contactOption": "TollFree",
+                "areaServed": [
+                    "CI",
+                    "FR"
+                ],
+                "availableLanguage": [
+                    "French",
+                    "English"
+                ]
+            }]
+        }
+    </script>
+{% endblock %}
