@@ -2,6 +2,7 @@
 
 namespace App\Utilities;
 
+use App\Entity\Domaine;
 use App\Repository\SoutienRepository;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,13 +17,24 @@ class Utility
         $this->entityManager = $entityManager;
         $this->soutienRepository= $soutienRepository;
     }
-
-    public function soutien()
+	
+	/**
+	 * @return array
+	 */
+    public function soutien(): array
     {
         $soutiens = $this->soutienRepository->findBy([],['affichage'=>"ASC"]); 
 
         return $soutiens;
     }
+	
+	/**
+	 * @return array
+	 */
+	public function domaine(): array
+	{
+		return $this->entityManager->getRepository(Domaine::class)->findAll();
+	}
 
     /**
      * Formattage du contenu du texte avec éléminitation des balises HTML pour le resumé du texte

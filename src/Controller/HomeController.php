@@ -28,7 +28,8 @@ class HomeController extends AbstractController
             'cover' => $cover,
             'soutiens' => $this->utility->soutien(),
             'presentation' => $this->getDoctrine()->getRepository(Presentation::class)->findOneBy([],['id'=>'DESC']),
-            'menu' => 'home'
+            'menu' => 'home',
+	        'domaines' => $this->utility->domaine()
         ]);
     }
 

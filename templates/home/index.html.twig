@@ -14,15 +14,17 @@
                             <form action="">
                                 <div class="row">
                                     <div class="col-sm-4 mt-2">
-                                        <select name="nom" id="nom" class="form-control">
+                                        <select name="domaine" id="domaine" class="form-control select">
                                             <option value="">Quel domaine vous intéresse?</option>
-                                            <!--<option value="">Toutes les matières (primaire)</option>
-											<option value="">Mathématiques</option>
-											<option value="">...</option>-->
+                                            <option value=""></option>
+                                            {% for domaine in domaines %}
+                                                <option value="{{ domaine.slug }}">{{ domaine.libelle }}</option>
+                                            {% endfor %}
+
                                         </select>
                                     </div>
                                     <div class="col-sm-4 mt-2">
-                                        <select name="prenom" id="prenom" class="form-control">
+                                        <select name="prenom" id="prenom" class="form-control select">
                                             <option value="">Quel niveau?</option>
                                             <!--<option value="">CP</option>
 											<option value="">CE1</option>
@@ -30,7 +32,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-3 mt-2">
-                                        <select name="sexe" id="sexe" class="form-control">
+                                        <select name="sexe" id="sexe" class="form-control select">
                                             <option value="">Les cours sont pour..</option>
                                             <option value="">Mon enfant</option>
                                             <option value="">Moi-même</option>
@@ -165,6 +167,7 @@
 {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/select2/css/select2.min.css')) }}">
     <style>
         .rs-banner.style1 {
             padding: 125px 0 425px;
@@ -214,6 +217,14 @@
             right: 0;
         }
     </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ absolute_url(asset('backoffice/lib/select2/js/select2.min.js')) }}"></script>
+    <script>
+        $('.select').select2();
+    </script>
 {% endblock %}
 
 {% block meta %}
