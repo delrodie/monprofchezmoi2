@@ -30,9 +30,9 @@ class HomeController extends AbstractController
     public function index(): Response
     {
 		//return $this->redirectToRoute('app_maintenance');
-        $cover = $this->getDoctrine()->getRepository(Cover::class)->findOneBy([],['id'=>'DESC']);
+        $cover = $this->getDoctrine()->getRepository(Cover::class)->findOneBy(['statut'=>true],['id'=>'DESC']);
 
-        return $this->render('home/maintenance.html.twig', [
+        return $this->render('home/index.html.twig', [
             'cover' => $cover,
             'soutiens' => $this->utility->soutien(),
             'presentation' => $this->getDoctrine()->getRepository(Presentation::class)->findOneBy([],['id'=>'DESC']),
