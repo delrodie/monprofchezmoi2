@@ -12469,7 +12469,7 @@ body .modal-backdrop {
   padding: 20px 14px 35px !important;
 }
 .rs-faq-part.style1 .img-part {
-  background: url(../images/faq/1.jpg);
+  /*background: url(../images/bg.jpg);*/
   background-size: cover;
   background-position: center;
   width: 100%;

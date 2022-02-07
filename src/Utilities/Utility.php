@@ -33,7 +33,7 @@ class Utility
 	 */
 	public function domaine(): array
 	{
-		return $this->entityManager->getRepository(Domaine::class)->findAll();
+		return $this->entityManager->getRepository(Domaine::class)->findBy(['statut'=>true]);
 	}
 
     /**
