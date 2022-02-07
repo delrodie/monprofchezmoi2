@@ -1,0 +1,38 @@
+<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalLabel4">{{ medium.titre }}</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"><i data-feather="x"></i></span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p class="mt-3">
+                <div class="input-group mb-3">
+                    <input type="text" id="url{{ medium.id }}" value="{{ absolute_url(asset('upload/media/'~ medium.fichier)) }}" class="form-control" aria-describedby="button-addon{{ medium.id }}" readonly>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon{{ medium.id }}" onclick="copierUrl({{ medium.id }})">Copier</button>
+                    </div>
+                </div>
+                 <br>
+                <img src="{{ absolute_url(asset('upload/media/'~ medium.fichier)) }}" alt="{{ medium.titre }}" class="img-thumbnail" style="float: left; margin-right: 20px;">
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            {{ include('backend_media/_delete_form.html.twig') }}
+            <a href="{{ path('backend_media_edit', {'id': medium.id}) }}" class="btn btn-primary"> Modifier</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function copierUrl(id) {
+        let content = document.querySelector('#url'+id);
+        //console.log('')
+        content.select();
+        document.execCommand('copy');
+        alert('Copié');
+    }
+
+</script>

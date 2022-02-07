@@ -30,3 +30,4 @@ services:
             $soutienDirectory: '%kernel.project_dir%/public/upload/soutien'
             $adulteDirectory: '%kernel.project_dir%/public/upload/adulte'
             $coverDirectory: '%kernel.project_dir%/public/upload/cover'
+            $mediaDirectory: '%kernel.project_dir%/public/upload/media'
