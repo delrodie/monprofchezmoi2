@@ -1,7 +1,14 @@
 {{ form_start(form) }}
     <div class="form-row form-group">
         <div class="col-12">{{ form_row(form.titre) }}</div>
-        <div class="col-12 mt-2">{{ form_row(form.fichier) }}</div>
+        {% if medium.fichier %}
+            <div class="col-md-6 mt-4">
+                <img src="{{ absolute_url(asset('upload/media/'~ medium.fichier)) }}" alt="{{ medium.titre }}" class="img-thumbnail">
+            </div>
+            <div class="col-md-6 mt-2">{{ form_row(form.fichier) }}</div>
+        {% else %}
+            <div class="col-12 mt-2">{{ form_row(form.fichier) }}</div>
+        {% endif %}
     </div>
     {{ form_widget(form) }}
     <div class="text-right">

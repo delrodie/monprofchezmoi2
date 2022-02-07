@@ -104,7 +104,25 @@ class BackendMediaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+	        // slug
+	        $slugify = new Slugify();
+	        $slug = $slugify->slugify($medium->getTitre());
+	        $medium->setSlug($slug);
+	
+	        $mediaFile = $form->get('fichier')->getData(); //dd($mediaFile);
+	
+	        if ($mediaFile){
+		        $media = $this->gestionMedia->upload($mediaFile, 'media'); //dd($activite->getLogo());
+		
+		        // Supression de l'ancien fichier
+		        $this->gestionMedia->removeUpload($medium->getFichier(), 'media');
+		
+		        $medium->setFichier($media);
+	        }
+			
             $entityManager->flush();
+	
+	        $this->addFlash('success', "Le media ". $medium->getTitre()." a bien été modifié");
 
             return $this->redirectToRoute('backend_media_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -112,6 +130,8 @@ class BackendMediaController extends AbstractController
         return $this->renderForm('backend_media/edit.html.twig', [
             'medium' => $medium,
             'form' => $form,
+	        'menu' => self::menu,
+	        'sub_menu' => self::sub_menu
         ]);
     }
 
@@ -121,8 +141,15 @@ class BackendMediaController extends AbstractController
     public function delete(Request $request, Media $medium, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$medium->getId(), $request->request->get('_token'))) {
+	        $media = $medium->getFichier();
+	        $titre = $medium->getTitre();
             $entityManager->remove($medium);
             $entityManager->flush();
+	
+	        // Supression de l'ancien fichier
+	        $this->gestionMedia->removeUpload($media, 'media');
+	
+	        $this->addFlash('success', "Le media ". $titre." a bien été supprimé");
         }
 
         return $this->redirectToRoute('backend_media_index', [], Response::HTTP_SEE_OTHER);
