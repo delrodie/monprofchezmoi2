@@ -2,7 +2,9 @@
 
 namespace App\Utilities;
 
+use App\Entity\Adulte;
 use App\Entity\Domaine;
+use App\Entity\MenuAdulte;
 use App\Repository\SoutienRepository;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
@@ -58,7 +60,28 @@ class Utility
 		$slugify = new Slugify();
 		return $slugify->slugify($str);
 	}
-
-
+	
+	public function menuAdulte(): array
+	{
+		$menus = $this->entityManager->getRepository(MenuAdulte::class)->findAll();
+		
+		$lists=[];$adultes=[];$i=0;$j=0;
+		foreach ($menus as $menu){
+			$sous_menus = $this->entityManager->getRepository(Adulte::class)->findBy(['menu' => $menu->getId()]);
+			foreach ($sous_menus as $sous_menu){
+				$lists[$j++] = [
+					'menu_adulte' => $sous_menu->getTitre(),
+					'menu_slug' => $sous_menu->getSlug(),
+				];
+			}
+			$adultes[$i++] = [
+				'menu' => $menu->getTitre(),
+				'lists' => $lists,
+				'slug' => $menu->getSlug()
+			];
+		}
+		
+		return $adultes;
+	}
 
 }

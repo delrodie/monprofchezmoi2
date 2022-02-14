@@ -1,5 +1,14 @@
 <ul class="sub-menu">
-    {% for adulte in adultes %}
-        <li><a href="{{ absolute_url(path('frontend_adulte_show', {'slug': adulte.slug}) )}}">{{ adulte.titre }}</a> </li>
-    {% endfor %}
+        {% for adulte in adultes %}
+                <li class="menu-item-has-children right">
+                        <a href="#">{{ adulte.menu }}</a>
+                        <ul class="sub-menu right">
+                                {% for sous_menu in adulte.lists %}
+                                        <li><a href="{{ absolute_url(path('frontend_adulte_show', {'slug': sous_menu.menu_slug})) }}">{{ sous_menu.menu_adulte }}</a></li>
+                                {% endfor %}
+                        </ul>
+                </li>
+        {% endfor %}
+
+
 </ul>

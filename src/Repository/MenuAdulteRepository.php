@@ -32,6 +32,15 @@ class MenuAdulteRepository extends ServiceEntityRepository
             ->getQuery()->getOneOrNullResult()
             ;
     }
+	
+	public function findByMenu($slug)
+	{
+		return $this->createQueryBuilder('m')
+			->where('m.titre = :slug')
+			->setParameter('slug', $slug)
+			->getQuery()->getResult()
+			;
+	}
 
     // /**
     //  * @return MenuAdulte[] Returns an array of MenuAdulte objects
