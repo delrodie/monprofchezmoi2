@@ -60,3 +60,28 @@
     opacity: 0;
     transition: all 0.3s ease;
 }
+.nav-menu .rs-mega-menu > a span:after, .nav-menu > .menu-item-has-children > a span:after {
+    content:"\f107";
+    font-family:FontAwesome;
+    float:right;
+    margin:2px 0 0 2px;
+}
+
+
+.full-width-header .rs-header .menu-area .main-menu .rs-menu ul.nav-menu li a {
+    font-size: 13px;
+    height: 50px;
+    line-height: 50px;
+}
+.rs-menu .sub-menu li a {
+    padding: 10px 14px;
+}
+.rs-header .menu-area .main-menu .rs-menu ul.sub-menu {
+    padding: 15px 0 0 !important;
+}
+.rs-header .menu-area .main-menu .rs-menu .nav-menu .mega-menu .single-megamenu .sub-menu .menu-title {
+    font-size: 20px;
+    font-weight: 700;
+    padding: 10px 10px;
+    color: #0a0a0a;
+}

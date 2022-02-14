@@ -63,35 +63,15 @@
                                             <a href="#">Soutien</a>
                                             {{ render(url('frontend_soutien_menu')) }}
                                         </li>
-
-                                        <li class="rs-mega-menu mega-rs menu-item-has-children {% if menu == 'adulte' %}current-menu-item{% endif %}"> <a href="#">Cours adultes</a>
-                                            <ul class="mega-menu">
-                                                <li class="mega-menu-container">
-                                                    <div class="mega-menu-innner">
-                                                        <div class="single-megamenu">
-                                                            <ul class="sub-menu">
-                                                                <li><a href="{{ absolute_url(path('frontend_adulte_menu', {'slug': 'langue'})) }}">Langues étrangères</a> </li>
-                                                                <li><a href="{{ absolute_url(path('frontend_adulte_menu', {'slug': 'oratoire'})) }}">Art oratoire</a> </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="single-megamenu">
-                                                            <ul class="sub-menu last-sub-menu">
-                                                                <li><a href="{{ absolute_url(path('frontend_adulte_menu', {'slug': 'niveau'})) }}">Remise à niveau</a> </li>
-                                                                <li><a href="{{ absolute_url(path('frontend_adulte_menu', {'slug': 'francais'})) }}">Français</a> </li>
-                                                                <li><a href="{{ absolute_url(path('frontend_adulte_menu', {'slug': 'informatique'})) }}">Informatique</a> </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="single-megamenu">
-                                                            <ul class="sub-menu last-sub-menu">
-                                                                <li><a href="{{ absolute_url(path('frontend_adulte_menu', {'slug': 'concours'})) }}">Concours</a> </li>
-                                                                <li><a href="{{ absolute_url(path('frontend_adulte_menu', {'slug': 'musique'})) }}">Musique</a> </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                        <li class="menu-item-has-children {% if menu == 'adulte' %}current-menu-item{% endif %}">
+                                            <a href="#">Cours adultes</a>
+                                            {{ render(url('frontend_adulte_menu')) }}
                                         </li>
 
+
+                                        <li class="menu-item-has-children {% if menu == 'contact' %}current-menu-item{% endif %}">
+                                            <a href="#">Recrutement</a>
+                                        </li>
                                         <li class="menu-item-has-children {% if menu == 'contact' %}current-menu-item{% endif %}">
                                             <a href="#">Contact</a>
                                         </li>

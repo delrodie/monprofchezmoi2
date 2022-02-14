@@ -19,11 +19,10 @@ class FrontendAdulteController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $slug = $request->get('slug');
-        $menu = $this->getDoctrine()->getRepository(MenuAdulte::class)->findByVar($slug); //dd($menu);
-
-        if ($menu) return $this->redirectToRoute('frontend_adulte_show',['slug'=>$menu->getSlug()]);
-        else return $this->redirectToRoute('frontend_erreur',['slug'=>'404']);
+        $adultes = $this->getDoctrine()->getRepository(Adulte::class)->findAll();
+		return $this->render('frontend_adulte/index.html.twig',[
+			'adultes' => $adultes
+		]);
     }
 
     /**
