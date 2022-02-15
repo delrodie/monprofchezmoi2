@@ -9,44 +9,11 @@
             <div class="row">
                 <div class="col-lg-8 pr-50 md-pr-15">
                     <div class="blog-deatails">
-                        {% if recrutement.media %}
-                            <div class="bs-img">
-                                <a href="#"><img src="{{ absolute_url(asset('upload/recrutement/'~ recrutement.media)) }}" alt="{{ recrutement.titre }}" width="800"></a>
-                            </div>
-                        {% endif %}
+                        <div class="bs-img">
+                            <a href="#"><img src=" {{ absolute_url(asset('assets/images/succes.jpg')) }}" alt="" width="800"></a>
+                        </div>
                         <div class="blog-full">
-                            <h2 class="title mb-40">{{ recrutement.titre }}</h2>
-                            <div class="blog-desc mb-35 text-justify">
-                                {{ recrutement.contenu|raw }}
-                            </div>
-                            <div class="rs-quick-contact new-style">
-                                {{ form_start(form) }}
-                                    <div class="row form-group">
-                                        <div class="col-12 mt-3">{{ form_row(form.civilite) }}</div>
-                                        <div class="col-12 mt-3">{{ form_row(form.nom) }}</div>
-                                        <div class="col-12 mt-3">{{ form_row(form.prenoms) }}</div>
-                                        <div id="sandbox-container" class="col-12 mt-3">
-                                            {{ form_label(form.dateNaissance) }}
-                                            {{ form_widget(form.dateNaissance) }}
-                                        </div>
-                                        <div class="col-12 mt-3">{{ form_row(form.email) }}</div>
-                                        <div class="col-12 mt-3">{{ form_row(form.adresse) }}</div>
-                                        <div class="col-12 mt-3">{{ form_row(form.cv) }}</div>
-                                        <div class="col-12 mt-3">{{ form_row(form.lettreMotivation) }}</div>
-                                        <div class="col-12 mt-3">
-                                            <div class="custom-control custom-checkbox">
-                                                {{ form_widget(form.approuve) }}
-                                                {{ form_label(form.approuve) }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{ form_widget(form) }}
-                                    <div class="form-group mt-5">
-                                        <button class="btn btn-primary btn-block">{{ button_label|default('Envoyer') }}</button>
-                                    </div>
-
-                                {{ form_end(form) }}
-                            </div>
+                            <h2 class="title mb-40">Candidature envoyée avec succès</h2>
                         </div>
                     </div>
 

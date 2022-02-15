@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidat index{% endblock %}
+
+{% block body %}
+    <h1>Candidat index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Civilite</th>
+                <th>Nom</th>
+                <th>Prenoms</th>
+                <th>Email</th>
+                <th>DateNaissance</th>
+                <th>Adresse</th>
+                <th>Cv</th>
+                <th>LettreMotivation</th>
+                <th>Approuve</th>
+                <th>CreatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for candidat in candidats %}
+            <tr>
+                <td>{{ candidat.id }}</td>
+                <td>{{ candidat.civilite }}</td>
+                <td>{{ candidat.nom }}</td>
+                <td>{{ candidat.prenoms }}</td>
+                <td>{{ candidat.email }}</td>
+                <td>{{ candidat.dateNaissance }}</td>
+                <td>{{ candidat.adresse }}</td>
+                <td>{{ candidat.cv }}</td>
+                <td>{{ candidat.lettreMotivation }}</td>
+                <td>{{ candidat.approuve ? 'Yes' : 'No' }}</td>
+                <td>{{ candidat.createdAt ? candidat.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('backend_candidat_show', {'id': candidat.id}) }}">show</a>
+                    <a href="{{ path('backend_candidat_edit', {'id': candidat.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('backend_candidat_new') }}">Create new</a>
+{% endblock %}

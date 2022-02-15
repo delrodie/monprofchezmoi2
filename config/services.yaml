@@ -32,3 +32,5 @@ services:
             $coverDirectory: '%kernel.project_dir%/public/upload/cover'
             $mediaDirectory: '%kernel.project_dir%/public/upload/media'
             $recrutementDirectory: '%kernel.project_dir%/public/upload/recrutement'
+            $cvDirectory: '%kernel.project_dir%/public/upload/recrutement/cv'
+            $motivationDirectory: '%kernel.project_dir%/public/upload/recrutement/motivation'
