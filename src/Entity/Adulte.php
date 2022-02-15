@@ -41,11 +41,11 @@ class Adulte
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $tags;
-
-    /**
-     * @ORM\OneToOne(targetEntity=MenuAdulte::class, inversedBy="adulte", cascade={"persist", "remove"})
-     */
-    private $menu;
+	
+	/**
+	 * @ORM\ManyToOne(targetEntity=MenuAdulte::class)
+	 */
+	private $menu;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
