@@ -31,3 +31,4 @@ services:
             $adulteDirectory: '%kernel.project_dir%/public/upload/adulte'
             $coverDirectory: '%kernel.project_dir%/public/upload/cover'
             $mediaDirectory: '%kernel.project_dir%/public/upload/media'
+            $recrutementDirectory: '%kernel.project_dir%/public/upload/recrutement'
