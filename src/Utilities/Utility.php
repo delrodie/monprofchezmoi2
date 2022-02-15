@@ -79,6 +79,7 @@ class Utility
 				'lists' => $lists,
 				'slug' => $menu->getSlug()
 			];
+			$lists = [];
 		}
 		
 		return $adultes;
