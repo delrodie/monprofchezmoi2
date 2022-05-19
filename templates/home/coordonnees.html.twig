@@ -1,0 +1,21 @@
+{% if coordonnee %}
+	<ul class="address-widget">
+		<li>
+			<i class="flaticon-location"></i>
+			<div class="desc">{{ coordonnee.localisation }}</div>
+		</li>
+		<li>
+			<i class="flaticon-call"></i>
+			<div class="desc">
+				<a href="tel:{{ coordonnee.tel }}">{{ coordonnee.tel }}</a> <br>
+				<a href="tel:{{ coordonnee.tel2 }}">{{ coordonnee.tel2 }}</a>
+			</div>
+		</li>
+		<li>
+			<i class="flaticon-email"></i>
+			<div class="desc">
+				<a href="mailto:{{ coordonnee.email }}">{{ coordonnee.email }}</a>
+			</div>
+		</li>
+	</ul>
+{% endif %}
