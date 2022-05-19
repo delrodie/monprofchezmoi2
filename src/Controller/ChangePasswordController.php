@@ -38,7 +38,8 @@ class ChangePasswordController extends AbstractController
             return $this->redirectToRoute('app_logout');
         }
 
-        return $this->render('change_password/index.html.twig', [
+        return $this->render('change_password/i
+        ndex.html.twig', [
             'resetForm' => $form->createView(),
         ]);
     }

@@ -30,7 +30,7 @@
                 <a href="#" class="nav-link with-sub"><i data-feather="box"></i> Tableau de bord</a>
                 <nav class="nav nav-sub">
 
-                    <a href="{{ path('app_home') }}" class="nav-sub-link {% if sub_menu == 'backend' %}active{% endif %}">Statistiques</a>
+                    <a href="{{ path('backend_dashboard') }}" class="nav-sub-link {% if sub_menu == 'backend' %}active{% endif %}">Statistiques</a>
                 </nav>
             </li>
             <li class="nav-item {% if menu == 'gestion' %}show{% endif %}">
@@ -39,7 +39,7 @@
                     <a href="{{ path('backend_cover_index') }}" class="nav-sub-link {% if sub_menu == 'cover' %}active{% endif %}">Cover</a>
                     <a href="{{ path('backend_presentation_index') }}" class="nav-sub-link {% if sub_menu == 'presentation' %}active{% endif %}">Presentation</a>
                     <a href="{{ path('backend_media_index') }}" class="nav-sub-link {% if sub_menu == 'media' %}active{% endif %}">Media</a>
-                    <a href="#" class="nav-sub-link {% if sub_menu == 'contact' %}active{% endif %}">Contact</a>
+                    <a href="{{ path('backend_contact_index') }}" class="nav-sub-link {% if sub_menu == 'contact' %}active{% endif %}">Coordonnées</a>
                 </nav>
             </li>
             <li class="nav-item {% if menu == 'soutien' %}show{% endif %}">
@@ -67,6 +67,9 @@
                     <a href="{{ absolute_url(path('backend_recrutement_index') )}}" class="nav-sub-link {% if sub_menu == 'recrutement' %} active{% endif %}">Recrutement</a>
                     <a href="#" class="nav-sub-link {% if sub_menu == 'candidat' %} active{% endif %}">Candidat</a>
                 </nav>
+            </li>
+            <li class="nav-item {% if menu == 'contact' %}show{% endif %}">
+                <a href="{{ absolute_url(path('backend_contact_index')) }}" class="nav-link {% if sub_menu == 'contact' %} active{% endif %}"><i data-feather="box"></i> Contact</a>
             </li>
             <li class="nav-item"><a href="#" class="nav-link"><i data-feather="shopping-bag"></i> Newsletter</a></li>
 

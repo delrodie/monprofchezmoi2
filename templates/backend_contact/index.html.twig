@@ -1,0 +1,87 @@
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}{{ parent() }} Gestion des contacts{% endblock %}
+
+{% block body %}
+    {{ include('backend/entete.html.twig',{'rubrique': 'Contact'}) }}
+
+    <div class="component-section no-code">
+        <h5 id="section1" class="tx-semibold">Menu Adulte</h5>
+        <p class="mg-b-25"></p>
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} alert-dismissible mg-b-25 fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <table id="userList" class="table">
+            <thead>
+            <tr>
+                <th class="wd-5p text-center">#</th>
+                <th class="wd-30p text-center">NOM & PRENOMS</th>
+                <th class="wd-20p text-center">TELEPHONE</th>
+                <th class="wd-25p text-center">EMAIL</th>
+                <th class="wd-20p text-center">DATE</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>
+                        <a href="{{ absolute_url(path('backend_contact_show', {'id': contact.id})) }}">{{ contact.nom }} {{ contact.prenoms }} </a>
+                    </td>
+                    <td class="text-center">{{ contact.telephone }}</td>
+                    <td class="text-center">{{ contact.email }}</td>
+                    <td class="text-center">{{ contact.createdAt|date('Y-m-d H:i:s') }}</td>
+
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/prismjs/themes/prism-tomorrow.css')) }}">
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/datatables.net-dt/css/jquery.dataTables.min.css')) }}">
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css')) }}">
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/select2/css/select2.min.css')) }}">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ absolute_url(asset('backoffice/lib/prismjs/prism.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/datatables.net/js/jquery.dataTables.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/datatables.net-dt/js/dataTables.dataTables.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/datatables.net-responsive/js/dataTables.responsive.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/select2/js/select2.min.js')) }}"></script>
+    <script>
+        $(function(){
+            'use strict'
+
+            $('#userList').DataTable({
+                //responsive: true,
+                language: {
+                    searchPlaceholder: 'Recherche...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ elements/page',
+                }
+            });
+
+
+            // Select2
+            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+        });
+    </script>
+{% endblock %}
