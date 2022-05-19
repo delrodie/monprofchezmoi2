@@ -1,0 +1,18 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-sm-10 offset-sm-1">
+        <div class="row form-group">
+            <div class="col-sm-12">{{ form_row(form.localisation) }}</div>
+            <div class="col-sm-6 mt-3">{{ form_row(form.tel) }}</div>
+            <div class="col-sm-6 mt-3">{{ form_row(form.tel2) }}</div>
+            <div class="col-sm-6 mt-3">{{ form_row(form.email) }}</div>
+            <div class="col-sm-6 mt-3">{{ form_row(form.adresse) }}</div>
+        </div>
+    </div>
+</div>
+{{ form_widget(form) }}
+<div class="text-right mt-5">
+    <a href="{{ path('app_backend_coordonnee_index') }}" class="btn btn-outline-secondary">Annuler</a>
+    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+</div>
+{{ form_end(form) }}

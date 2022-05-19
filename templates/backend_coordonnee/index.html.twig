@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coordonnee index{% endblock %}
+
+{% block body %}
+    <h1>Coordonnee index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Localisation</th>
+                <th>Tel</th>
+                <th>Tel2</th>
+                <th>Email</th>
+                <th>Adresse</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for coordonnee in coordonnees %}
+            <tr>
+                <td>{{ coordonnee.id }}</td>
+                <td>{{ coordonnee.localisation }}</td>
+                <td>{{ coordonnee.tel }}</td>
+                <td>{{ coordonnee.tel2 }}</td>
+                <td>{{ coordonnee.email }}</td>
+                <td>{{ coordonnee.adresse }}</td>
+                <td>
+                    <a href="{{ path('app_backend_coordonnee_show', {'id': coordonnee.id}) }}">show</a>
+                    <a href="{{ path('app_backend_coordonnee_edit', {'id': coordonnee.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_backend_coordonnee_new') }}">Create new</a>
+{% endblock %}

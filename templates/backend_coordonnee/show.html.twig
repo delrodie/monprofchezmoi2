@@ -1,0 +1,51 @@
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}{{ parent() }} Gestion des coordonnées{% endblock %}
+
+{% block body %}
+    {{ include('backend/entete.html.twig',{'rubrique': 'coordonnée'}) }}
+    <div class="row">
+
+    </div>
+    <div class="component-section no-code">
+        <h5 id="section1" class="tx-semibold">coordonnée</h5>
+        <p class="mg-b-25"></p>
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} alert-dismissible mg-b-25 fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <table id="userList" class="table">
+            <tbody>
+            <tr>
+                <th class="wd-20p">Localisation</th>
+                <td>{{ coordonnee.localisation}}</td>
+            </tr>
+            <tr>
+                <th>coordonnée 1</th>
+                <td><a href="tel:{{ coordonnee.tel }}">{{ coordonnee.tel }}</a></td>
+            </tr>
+            <tr>
+                <th>coordonnée 2</th>
+                <td><a href="tel:{{ coordonnee.tel2 }}">{{ coordonnee.tel2 }}</a></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><a href="mailto:{{ coordonnee.email }}">{{ coordonnee.email }}</a></td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ coordonnee.adresse }}</td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+{% endblock %}
