@@ -1,0 +1,32 @@
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}{{ parent() }} Gestion des newsletters{% endblock %}
+
+
+{% block body %}
+    {{ include('backend/entete.html.twig',{'rubrique': 'newsletter'}) }}
+    <div class="row">
+        <div class="col text-right">
+            <a href="{{ path('app_backend_newsletter_index') }}" class="btn btn-outline-primary">
+                <i class="fa fa-list"></i> Liste
+            </a>
+        </div>
+    </div>
+    <div class="component-section no-code">
+        <h5 id="section1" class="tx-semibold">Formulaire d'enregistrement</h5>
+        <p class="mg-b-25"></p>
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} alert-dismissible mg-b-25 fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {{ include('backend_newsletter/_form.html.twig') }}
+    </div>
+
+{% endblock %}

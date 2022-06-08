@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+    <div class="row form-group">
+        <div class="col-sm-6">{{ form_row(form.email) }}</div>
+        <div class="col-sm-6">{{ form_row(form.nom) }}</div>
+        <div class="col-sm-6 mt-3">{{ form_row(form.contact) }}</div>
+        <div class="col-sm-12 mt-3">
+            {{ form_widget(form.statut) }} {{ form_label(form.statut) }}
+        </div>
+    </div>
+    <div class="text-right mt-5">
+        {{ form_widget(form) }}
+        <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+    </div>
+
+{{ form_end(form) }}

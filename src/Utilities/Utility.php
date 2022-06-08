@@ -5,6 +5,7 @@ namespace App\Utilities;
 use App\Entity\Adulte;
 use App\Entity\Domaine;
 use App\Entity\MenuAdulte;
+use App\Entity\Newsletter;
 use App\Repository\SoutienRepository;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
@@ -36,6 +37,17 @@ class Utility
 	public function domaine(): array
 	{
 		return $this->entityManager->getRepository(Domaine::class)->findBy(['statut'=>true]);
+	}
+	
+	/**
+	 * Vérification de l'adresse email
+	 *
+	 * @param $newsletter
+	 * @return Newsletter|mixed|object|null
+	 */
+	public function verifEmail($newsletter): mixed
+	{
+		return $this->entityManager->getRepository(Newsletter::class)->findOneBy(['email'=>$newsletter->getEmail()]);
 	}
 
     /**
