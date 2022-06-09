@@ -1,0 +1,17 @@
+{{ form_start(form) }}
+<div class="row form-group">
+    <div class="col-sm-12 mb-3">{{ form_row(form.objet) }}</div>
+    <div class="col-sm-12 mb-3">{{ form_row(form.description) }}</div>
+    <div class="col-sm-6 mb-3">{{ form_row(form.media) }}</div>
+    {% if message.media %}
+        <div class="col-sm-6 mb-3 mt-1">
+            <img src="{{ absolute_url(asset('upload/message/'~ message.media)) }}" alt="{{ message.objet }}" class="img-thumbnail" width="250" style="float: left; margin-right: 20px;">
+        </div>
+    {% endif %}
+</div>
+{{ form_widget(form) }}
+<div class="text-right mt-5">
+    <a href="{{ path('app_backend_message_index') }}" class="btn btn-outline-secondary">Annuler</a>
+    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+</div>
+{{ form_end(form) }}

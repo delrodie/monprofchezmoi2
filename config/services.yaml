@@ -34,3 +34,4 @@ services:
             $recrutementDirectory: '%kernel.project_dir%/public/upload/recrutement'
             $cvDirectory: '%kernel.project_dir%/public/upload/recrutement/cv'
             $motivationDirectory: '%kernel.project_dir%/public/upload/recrutement/motivation'
+            $messageDirectory: '%kernel.project_dir%/public/upload/message'

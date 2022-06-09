@@ -75,7 +75,7 @@
                 <a href="#" class="nav-link with-sub"><i data-feather="box"></i> Newsletter</a>
                 <nav class="nav nav-sub">
                     <a href="{{ absolute_url(path('app_backend_newsletter_index') )}}" class="nav-sub-link {% if sub_menu == 'newsletter' %} active{% endif %}">Comptes</a>
-                    <a href="#" class="nav-sub-link {% if sub_menu == 'messages' %} active{% endif %}">Messages</a>
+                    <a href="{{ path('app_backend_message_index') }}" class="nav-sub-link {% if sub_menu == 'message' %} active{% endif %}">Messages</a>
                 </nav>
             </li>
 

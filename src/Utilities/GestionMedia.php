@@ -18,9 +18,10 @@ class GestionMedia
 	private $mediaRecrutement;
 	private $mediaCV;
 	private $mediaLettre;
+	private $mediaMessage;
 	
 	public function __construct($presentationDirectory, $soutienDirectory, $adulteDirectory, $coverDirectory,
-        $mediaDirectory, $recrutementDirectory, $cvDirectory, $motivationDirectory
+        $mediaDirectory, $recrutementDirectory, $cvDirectory, $motivationDirectory, $messageDirectory
     )
     {
         $this->mediaPresentation = $presentationDirectory;
@@ -31,6 +32,7 @@ class GestionMedia
 	    $this->mediaRecrutement = $recrutementDirectory;
 		$this->mediaCV = $cvDirectory;
 		$this->mediaLettre = $motivationDirectory;
+		$this->mediaMessage = $messageDirectory;
     }
 
     /**
@@ -59,6 +61,7 @@ class GestionMedia
             elseif ($media === 'recrutement') $file->move($this->mediaRecrutement, $newFilename);
             elseif ($media === 'cv') $file->move($this->mediaCV, $newFilename);
             elseif ($media === 'lettre') $file->move($this->mediaLettre, $newFilename);
+            elseif ($media === 'message') $file->move($this->mediaMessage, $newFilename);
             else $file->move($this->mediaPresentation, $newFilename);
         }catch (FileException $e){
 
@@ -84,6 +87,7 @@ class GestionMedia
         elseif ($media === 'recrutement') unlink($this->mediaRecrutement.'/'.$ancienMedia);
         elseif ($media === 'cv') unlink($this->mediaCV.'/'.$ancienMedia);
         elseif ($media === 'lettre') unlink($this->mediaLettre.'/'.$ancienMedia);
+        elseif ($media === 'message') unlink($this->mediaMessage.'/'.$ancienMedia);
         else return false;
 
         return true;

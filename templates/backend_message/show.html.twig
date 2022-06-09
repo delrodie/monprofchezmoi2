@@ -1,0 +1,95 @@
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}{{ parent() }} Gestion des messages{% endblock %}
+
+{% block body %}
+    {{ include('backend/entete.html.twig',{'rubrique': 'message'}) }}
+    <div class="row">
+        <div class="col text-right">
+            <a href="{{ path('app_backend_message_index') }}" class="btn btn-outline-primary">
+                <i class="fa fa-list"></i> Liste
+            </a>
+        </div>
+
+    </div>
+    <div class="component-section no-code">
+        <h5 id="section1" class="tx-semibold">message</h5>
+        <p class="mg-b-25"></p>
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} alert-dismissible mg-b-25 fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <table id="userList" class="table">
+            <tbody>
+            <tr>
+                <th class="wd-20p">Objet</th>
+                <td>{{ message.objet }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ message.description|raw }}</td>
+            </tr>
+            <tr>
+                <th>Enregistré</th>
+                <td>{{ message.createdAt|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Envoyé</th>
+                <td>{{ message.envoiAt? message.envoiAt|date('Y-m-d H:i:s') : '<span class="badge badge-danger">NEGATIF</span>' }} </td>
+            </tr>
+            </tbody>
+
+        </table>
+        <div class="text-center mt-5">
+            <a href="{{ path('app_backend_message_index') }}" class="btn btn-outline-primary">Retour</a>
+            <a href="{{ path('app_newsletter_message', {'id': message.id}) }}" class="btn btn-warning" target="_blank   ">Aperçu</a>
+            <a href="{{ path('app_backend_message_edit', {'id': message.id}) }}" class="btn btn-primary">Modifier</a>
+            <a href="#" class="btn btn-success">Envoyer</a>
+        </div>
+        <div class="mt-3">
+            {{ include('backend_message/_delete_form.html.twig') }}
+        </div>
+    </div>
+
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/prismjs/themes/prism-tomorrow.css')) }}">
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/datatables.net-dt/css/jquery.dataTables.min.css')) }}">
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css')) }}">
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/select2/css/select2.min.css')) }}">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ absolute_url(asset('backoffice/lib/prismjs/prism.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/datatables.net/js/jquery.dataTables.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/datatables.net-dt/js/dataTables.dataTables.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/datatables.net-responsive/js/dataTables.responsive.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/lib/select2/js/select2.min.js')) }}"></script>
+    <script>
+        $(function(){
+            'use strict'
+
+            $('#userList').DataTable({
+                //responsive: true,
+                language: {
+                    searchPlaceholder: 'Recherche...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ elements/page',
+                }
+            });
+
+
+            // Select2
+            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+        });
+    </script>
+{% endblock %}
