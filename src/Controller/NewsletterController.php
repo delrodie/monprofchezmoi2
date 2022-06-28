@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use App\Entity\Newsletter;
+use App\Repository\MessageRepository;
 use App\Repository\NewsletterRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,11 +19,13 @@ class NewsletterController extends AbstractController
 {
 	private MailerInterface $mailer;
 	private NewsletterRepository $newsletterRepository;
+	private MessageRepository $messageRepository;
 	
-	public function __construct(MailerInterface $mailer, NewsletterRepository $newsletterRepository)
+	public function __construct(MailerInterface $mailer, NewsletterRepository $newsletterRepository, MessageRepository $messageRepository)
 	{
 		$this->mailer = $mailer;
 		$this->newsletterRepository = $newsletterRepository;
+		$this->messageRepository = $messageRepository;
 	}
 	
 	/**
@@ -31,16 +34,6 @@ class NewsletterController extends AbstractController
 	#[Route('/', name: 'app_newsletter')]
     public function index(): Response
     {
-		
-		$email = (New Email())
-			->from('delrodieamoikon@gmail.com')
-			->to('delrodieamoikon@gmail.com')
-			->subject('Test')
-			->text('Tesy')
-			->html('html')
-				;
-		
-		$this->mailer->send($email);
         return $this->render('newsletter/message.html.twig', [
             'controller_name' => 'NewsletterController',
         ]);
@@ -68,6 +61,18 @@ class NewsletterController extends AbstractController
 		
 		$this->mailer->send($email);
 		
+		// Mise a jour des message
+		$message->setEnvoiAt(new \DateTime());
+		$this->messageRepository->add($message, true);
+		
+		$this->addFlash('success', "Votre message a bien été envoyé");
+		
+		return $this->redirectToRoute('app_backend_message_show',['id' => $message->getId()]);
+	}
+	
+	#[Route('/{id}/apercu', name:'app_newsletter_message_apercu')]
+	public function apercu(Message $message): Response
+	{
 		return $this->render('newsletter/mail.html.twig',[
 			'message' => $message
 		]);

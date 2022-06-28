@@ -28,7 +28,7 @@ class BackendNewsletterController extends AbstractController
     public function index(NewsletterRepository $newsletterRepository): Response
     {
         return $this->render('backend_newsletter/index.html.twig', [
-            'newsletters' => $newsletterRepository->findAll(),
+            'newsletters' => $newsletterRepository->getListWithout(),
 	        'menu' => self::menu,
 	        'sub_menu' => self::sub_menu
         ]);

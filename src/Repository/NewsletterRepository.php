@@ -46,6 +46,19 @@ class NewsletterRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+	
+	public function getListWithout()
+	{
+		return $this->createQueryBuilder('m')
+			->where('m.email <> :email1')
+			->andWhere('m.email <>  :email2')
+			->setParameters([
+				'email1' => "delrodieamoikon@gmail.com",
+				'email2' => "esthetelab1@gmail.com"
+			])
+			->getQuery()->getResult()
+			;
+	}
 
     // /**
     //  * @return Newsletter[] Returns an array of Newsletter objects
