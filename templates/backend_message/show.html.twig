@@ -48,7 +48,7 @@
         </table>
         <div class="text-center mt-5">
             <a href="{{ path('app_backend_message_index') }}" class="btn btn-outline-primary">Retour</a>
-            <a href="{{ path('app_newsletter_message', {'id': message.id}) }}" class="btn btn-warning" target="_blank   ">Aperçu</a>
+            <a href="{{ path('app_newsletter_message_apercu', {'id': message.id}) }}" class="btn btn-warning" target="_blank   ">Aperçu</a>
             <a href="{{ path('app_backend_message_edit', {'id': message.id}) }}" class="btn btn-primary">Modifier</a>
             <a href="{{ path('app_newsletter_message', {'id': message.id}) }}" class="btn btn-success">Envoyer</a>
         </div>
