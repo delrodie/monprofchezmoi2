@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use App\Entity\Newsletter;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
@@ -40,9 +41,24 @@ class NewsletterController extends AbstractController
         ]);
     }
 	
+	/**
+	 * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
+	 */
 	#[Route('/{id}', name:'app_newsletter_message')]
 	public function message(Message $message)
-	{
+	{ //dd($message);
+		$email = (New TemplatedEmail())
+			->from('noreply@monprofchezmoi.ci')
+			->to('delrodieamoikon@gmail.com')
+			->subject($message->getObjet())
+			//->text('Tesy')
+			->htmlTemplate('newsletter/mail.html.twig',[
+				'message' => $message
+			])
+		;
+		
+		$this->mailer->send($email);
+		
 		return $this->render('newsletter/mail.html.twig',[
 			'message' => $message
 		]);
