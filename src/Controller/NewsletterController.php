@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use App\Entity\Newsletter;
+use App\Repository\NewsletterRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,10 +17,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class NewsletterController extends AbstractController
 {
 	private MailerInterface $mailer;
+	private NewsletterRepository $newsletterRepository;
 	
-	public function __construct(MailerInterface $mailer)
+	public function __construct(MailerInterface $mailer, NewsletterRepository $newsletterRepository)
 	{
 		$this->mailer = $mailer;
+		$this->newsletterRepository = $newsletterRepository;
 	}
 	
 	/**
@@ -28,6 +31,7 @@ class NewsletterController extends AbstractController
 	#[Route('/', name: 'app_newsletter')]
     public function index(): Response
     {
+		
 		$email = (New Email())
 			->from('delrodieamoikon@gmail.com')
 			->to('delrodieamoikon@gmail.com')
@@ -47,11 +51,12 @@ class NewsletterController extends AbstractController
 	 */
 	#[Route('/{id}', name:'app_newsletter_message')]
 	public function message(Message $message)
-	{ //dd($message);
+	{ //$this->adresses();
 		$email = (New TemplatedEmail())
 			->from(new Address('noreply@monprofchezmoi.ci', 'MONPROFCHEZMOI'))
 			->replyTo('info@monprofchezmoi.ci')
-			->to('delrodieamoikon@gmail.com')
+			//->to('delrodieamoikon@gmail.com')
+			->bcc(...$this->adresses())
 			->subject($message->getObjet())
 			->htmlTemplate('newsletter/mail.html.twig')
 			->context([
@@ -66,5 +71,17 @@ class NewsletterController extends AbstractController
 		return $this->render('newsletter/mail.html.twig',[
 			'message' => $message
 		]);
+	}
+	
+	public function adresses(): array
+	{
+		$adresses = $this->newsletterRepository->findBy(['statut'=>true]); //dd($adresses);
+		
+		$list=[]; $i=0;
+		foreach ($adresses as $adress)	{
+			$list[$i++]=new Address($adress->getEmail(), $adress->getNom());
+		}
+		
+		return $list;
 	}
 }
