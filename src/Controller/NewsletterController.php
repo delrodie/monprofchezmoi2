@@ -8,6 +8,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -48,11 +49,14 @@ class NewsletterController extends AbstractController
 	public function message(Message $message)
 	{ //dd($message);
 		$email = (New TemplatedEmail())
-			->from('noreply@monprofchezmoi.ci')
+			->from(new Address('noreply@monprofchezmoi.ci', 'MONPROFCHEZMOI'))
+			->replyTo('info@monprofchezmoi.ci')
 			->to('delrodieamoikon@gmail.com')
 			->subject($message->getObjet())
-			//->text('Tesy')
-			->htmlTemplate('newsletter/mail.html.twig',[
+			->htmlTemplate('newsletter/mail.html.twig')
+			->context([
+				'expiration_date' => new \DateTime('+7 days'),
+				'username' => 'MONPROFCHEZMOI',
 				'message' => $message
 			])
 		;
