@@ -62,7 +62,8 @@ class NewsletterController extends AbstractController
 		$this->mailer->send($email);
 		
 		// Mise a jour des message
-		$message->setEnvoiAt(new \DateTime());
+		//$date =
+		$message->setEnvoiAt(date('Y-m-d H:i:s'));
 		$this->messageRepository->add($message, true);
 		
 		$this->addFlash('success', "Votre message a bien été envoyé");
