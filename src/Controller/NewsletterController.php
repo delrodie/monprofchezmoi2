@@ -85,7 +85,8 @@ class NewsletterController extends AbstractController
 		
 		$list=[]; $i=0;
 		foreach ($adresses as $adress)	{
-			$list[$i++]=new Address($adress->getEmail(), $adress->getNom());
+			$list[$i++]=new Address($adress->getEmail());
+			//$list[$i++]=new Address($adress->getEmail(), $adress->getNom());
 		}
 		
 		return $list;
