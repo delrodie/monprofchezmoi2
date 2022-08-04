@@ -48,8 +48,8 @@ class NewsletterController extends AbstractController
 		$email = (New TemplatedEmail())
 			->from(new Address('noreply@monprofchezmoi.ci', 'MONPROFCHEZMOI'))
 			->replyTo('info@monprofchezmoi.ci')
-			//->to('delrodieamoikon@gmail.com')
-			->bcc(...$this->adresses())
+			->to('delrodieamoikon@gmail.com')
+			//->bcc(...$this->adresses())
 			->subject($message->getObjet())
 			->htmlTemplate('newsletter/mail.html.twig')
 			->context([
