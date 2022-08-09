@@ -18,6 +18,17 @@ class CoverRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Cover::class);
     }
+	
+	public function findByStatut($statut = true)
+	{
+		return $this->createQueryBuilder('c')
+			->where('c.statut = :statut')
+			->orderBy('c.id', 'DESC')
+			->setParameter('statut', $statut)
+			->setMaxResults(3)
+			->getQuery()->getResult()
+			;
+	}
 
     // /**
     //  * @return Cover[] Returns an array of Cover objects

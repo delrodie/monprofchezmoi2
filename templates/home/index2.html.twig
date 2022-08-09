@@ -5,21 +5,77 @@
 {% block body %}
     <div class="rs-slider main-home">
         <div class="rs-carousel owl-carousel" data-loop="true" data-items="1" data-margin="0" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="false" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="1" data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2="1" data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device="1" data-md-device-nav="true" data-md-device-dots="false">
-            {% for slide in slides %}
-                <div class="slider-content slide{{ loop.index }}">
-                    <div class="container">
-                        <div class="content-part">
-                            <div class="sl-sub-title wow bounceInLeft" data-wow-delay="300ms" data-wow-duration="2000ms">{{ slide.titre }}</div>
-                            <h1 class="sl-title wow fadeInRight" data-wow-delay="600ms" data-wow-duration="2000ms">{{ slide.description }}</h1>
-                            <div class="sl-btn wow fadeInUp" data-wow-delay="900ms" data-wow-duration="2000ms">
-                            </div>
+            <div class="slider-content slide1">
+                <div class="container">
+                    <div class="content-part">
+                        <div class="sl-sub-title wow bounceInLeft" data-wow-delay="300ms" data-wow-duration="2000ms">{{ cover.titre }}</div>
+                        <h1 class="sl-title wow fadeInRight" data-wow-delay="600ms" data-wow-duration="2000ms">Online Courses From Leading Experts</h1>
+                        <div class="sl-btn wow fadeInUp" data-wow-delay="900ms" data-wow-duration="2000ms">
+                            <a class="readon orange-btn main-home" href="#">Find Courses</a>
                         </div>
                     </div>
                 </div>
-            {% endfor %}
-
+            </div>
+            <div class="slider-content slide2">
+                <div class="container">
+                    <div class="content-part">
+                        <div class="sl-sub-title wow bounceInLeft" data-wow-delay="300ms" data-wow-duration="2000ms">Start to learning today</div>
+                        <h1 class="sl-title wow fadeInRight" data-wow-delay="600ms" data-wow-duration="2000ms">Explore Interests and Career With Courses</h1>
+                        <div class="sl-btn wow fadeInUp" data-wow-delay="900ms" data-wow-duration="2000ms">
+                            <a class="readon orange-btn main-home" href="#">Find Courses</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
+    </div>
+
+    <div id="rs-banner" class="rs-banner style1">
+        <div class="container">
+            <div class="banner-content text-center">
+                <div class="desc mb-35 wow wow fadeInRight" data-wow-delay="900ms" data-wow-duration="3000ms">{{ cover.titre }}</div>
+                <h1 class="banner-title wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="3000ms">{{ cover.description }}</h1>
+                <div class="banner-btn wow fadeInUp" data-wow-delay="1500ms" data-wow-duration="2000ms">
+                    <div class="row search">
+                        <div class="col-sm-12">
+                            {% if domaines %}
+                                <form action="">
+                                    <div class="row">
+                                        <div class="col-sm-4 mt-2">
+                                            <select name="domaine" id="domaine" class="form-control select">
+                                                <option value="">Quel domaine vous intéresse?</option>
+                                                <option value=""></option>
+                                                {% for domaine in domaines %}
+                                                    <option value="{{ domaine.id }}">{{ domaine.libelle }}</option>
+                                                {% endfor %}
+
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4 mt-2">
+                                            <select name="niveau" id="niveau" class="form-control select">
+                                                <option value="">Quel niveau?</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-3 mt-2">
+                                            <select name="sexe" id="sexe" class="form-control select">
+                                                <option value="">Les cours sont pour..</option>
+                                                <option value="">Mon enfant</option>
+                                                <option value="">Moi-même</option>
+                                                <option value="">Une autre relation</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-1 mt-2">
+                                            <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="rs-degree style1 modify gray-bg pt-100 pb-70 md-pt-70 md-pb-40">
@@ -143,6 +199,56 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/lib/select2/css/select2.min.css')) }}">
+    <style>
+        .rs-banner.style1 {
+            padding: 125px 0 425px;
+            background: url({{ absolute_url(asset('upload/cover/'~ cover.media)) }});
+            background-size: cover;
+            background-position: center;
+        }
+
+        .rs-banner.style1 .banner-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .rs-banner.style1 .banner-content .banner-title {
+            font-size: 35px;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .search{
+            background-color: #fff;
+            border-radius: 10px;
+        }
+        .search .row{
+            padding: 20px 5px;
+        }
+        .search select{
+            font-size: 18px;
+            display: inline-block;
+        }
+        .rs-banner.style1 .banner-content .desc {
+            font-size: 25px;
+            line-height: 30px;
+            padding-top: 100px;
+            color: var(--orange-color);
+            font-weight: bold;
+        }
+        .rs-cta.main-home .partition-bg-wrap:after {
+            background: url({{ absolute_url(asset('upload/cover/'~ cover.media)) }});
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .rs-cta.main-home .partition-bg-wrap:before {
+            background: url({{ absolute_url(asset('/assets/images/main-home.jpg')) }});
+            background-size: cover;
+            background-repeat: no-repeat;
+            right: 0;
+        }
+    </style>
     <style>
         .rs-slider.style1 {
             position: relative;
@@ -303,29 +409,32 @@
             margin: 0 auto;
         }
         .rs-slider.main-home .slider-content .content-part .sl-sub-title {
-            font-size: 35px;
+            font-size: 22px;
             line-height: 30px;
-            font-weight: bold;
-            color: var(--orange-color);
+            font-weight: 500;
+            color: #ff5421;
             margin-bottom: 22px;
             text-transform: uppercase;
         }
         .rs-slider.main-home .slider-content .content-part .sl-title {
-            font-size: 35px;
+            font-size: 70px;
             line-height: 80px;
             font-weight: 700;
             color: #ffffff;
             margin-bottom: 65px;
         }
-        {%  for slide in slides %}
-        .rs-slider.main-home .slider-content.slide{{ loop.index }} {
-            background: url({{ absolute_url(asset('upload/cover/'~ slide.media)) }});
+        .rs-slider.main-home .slider-content.slide1 {
+            background: url(assets/images/slider/main-home/1.jpg);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
-        {% endfor %}
-
+        .rs-slider.main-home .slider-content.slide2 {
+            background: url(assets/images/slider/main-home/2.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
         .rs-slider.main-home .owl-nav .owl-next,
         .rs-slider.main-home .owl-nav .owl-prev {
             position: absolute;
@@ -336,7 +445,7 @@
             height: 42px;
             line-height: 42px;
             border-radius: 50%;
-            background: var(--orange-color);
+            background: #ff5421;
             text-align: center;
             color: #ffffff;
             transition: all 0.5s;
@@ -351,7 +460,7 @@
         }
         .rs-slider.main-home .owl-nav .owl-next:hover,
         .rs-slider.main-home .owl-nav .owl-prev:hover {
-            background: var(--orange-color);
+            background: #ed3600;
         }
         .rs-slider.main-home .owl-nav .owl-next {
             right: 30px;

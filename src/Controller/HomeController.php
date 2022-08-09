@@ -31,13 +31,15 @@ class HomeController extends AbstractController
     {
 		//return $this->redirectToRoute('app_maintenance');
         $cover = $this->getDoctrine()->getRepository(Cover::class)->findOneBy(['statut'=>true],['id'=>'DESC']);
+		$slides = $this->getDoctrine()->getRepository(Cover::class)->findByStatut();
 
         return $this->render('home/index.html.twig', [
             'cover' => $cover,
             'soutiens' => $this->utility->soutien(),
             'presentation' => $this->getDoctrine()->getRepository(Presentation::class)->findOneBy([],['id'=>'DESC']),
             'menu' => 'home',
-	        'domaines' => $this->utility->domaine()
+	        'domaines' => $this->utility->domaine(),
+	        'slides' => $slides
         ]);
     }
 
