@@ -9,15 +9,21 @@
             <div class="row">
                 <div class="col-lg-8 pr-50 md-pr-15">
                     <div class="blog-deatails">
-                        <div class="bs-img">
-                            <a href="#"><img src="{{ absolute_url(asset('upload/adulte/'~ adulte.media)) }}" alt="{{ adulte.titre }}" width="800"></a>
-                        </div>
+                        {% if adulte.media %}
+                            <div class="bs-img">
+                                <a href="#"><img src="{{ absolute_url(asset('upload/adulte/'~ adulte.media)) }}" alt="{{ adulte.titre }}" width="800"></a>
+                            </div>
+                        {% endif %}
+
                         <div class="blog-full">
                             <h2 class="title mb-40">{{ adulte.titre }}</h2>
                             <div class="blog-desc mb-35 text-justify">
                                 {{ adulte.contenu|raw }}
                             </div>
                         </div>
+                        {% if adulte.slug == 'profil' or adulte.slug == 'profile' %}
+                            {{ render(url('frontend_profil_contact')) }}
+                        {% endif %}
                     </div>
 
                 </div>

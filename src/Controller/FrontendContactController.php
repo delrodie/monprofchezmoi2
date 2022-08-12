@@ -59,4 +59,28 @@ class FrontendContactController extends AbstractController
 			'menu' => "contact"
 		]);
 	}
+	
+	/**
+	 * @Route("/profil/contact", name="frontend_profil_contact", methods={"POST","GET"})
+	 */
+	public function profile(Request $request): Response
+	{
+		$contact = new Contact();
+		$form = $this->createForm(ContactType::class, $contact);
+		$form->handleRequest($request);
+		
+		if ($form->isSubmitted() && $form->isValid()){
+			//dd($contact);
+			$this->em->persist($contact);
+			$this->em->flush();
+			
+			return $this->redirectToRoute('frontend_contact_message', ['id'=>$contact->getId()]);
+		}
+		
+		return $this->renderForm('frontend_contact/profil.html.twig', [
+			'contact' => $contact,
+			'form' => $form,
+			'menu' => 'contact'
+		]);
+	}
 }
