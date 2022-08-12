@@ -21,7 +21,7 @@
                                 {{ adulte.contenu|raw }}
                             </div>
                         </div>
-                        {% if adulte.slug == 'profil' or adulte.slug == 'profile' %}
+                        {% if adulte.slug == 'votre-profil' or adulte.slug == 'votre-profile' %}
                             {{ render(url('frontend_profil_contact')) }}
                         {% endif %}
                     </div>
